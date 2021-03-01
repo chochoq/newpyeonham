@@ -1,3 +1,30 @@
 nav{
-    background-color: yellow;
+    background-color: antiquewhite;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
+
+.login section{
+    display: none;
+    flex-direction: column;    
+    justify-content: center;
+    align-items: center;
+    background-color: antiquewhite;
+    height: 400px;    
+}
+
+section.show{
+    display: flex;
+}
+
+.input-group.mb-3{
+    width: 50%;
+}
+.input-group-text{
+    width: 120px;
+}
+
+/* .signup_section.show{
+    display: block;
+} */

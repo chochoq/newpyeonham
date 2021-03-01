@@ -16,6 +16,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
             integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
             crossorigin="anonymous"></script>
+                
     
 
     <!-- 구글폰트 -->
@@ -28,28 +29,67 @@
     <link rel= "stylesheet" type="text/css" href="/static/css/recomStyle.css">
     <link rel= "stylesheet" type="text/css" href="/static/css/serchbarStyle.css">
 
-    
-</head>
+    </head>
 <body>
 
-<h1>안녕 여기서 시작해봐요</h1>
 <nav>
-    NEW편함
-    <div class="button-box">
+    <i></i>
+    <span class="title">뉴편함</span>
+    <div class="button_box">
         <input class="btn btn-primary signup_btn" type="button" value="회원가입" >
-        <input class="btn btn-primary" type="button" value="로그인">
+        <input class="btn btn-primary login_btn" type="button" value="로그인">
     </div>    
 </nav>
 <div class="login">
-    <section class="signup-section">
-        
+    <section class="signup_section">
+        <span>회원가입</span>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-default">이름</span>
+            </div>
+            <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-default">메일</span>
+            </div>
+            <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-default">비밀번호</span>
+            </div>
+            <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-default">비밀번호 확인</span>
+            </div>
+            <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+        </div>
+        <button type="button" class="btn btn-info">가입하기</button>
     </section>
-    <section class="login-section"></section>
+    <section class="login_section">
+        로그인
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-default">이메일</span>
+            </div>
+            <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-default">비밀번호</span>
+            </div>
+            <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+        </div>
+        <button type="button" class="btn btn-info">로그인</button>
+    </section>
 </div>
+<div></div>
 <div></div>
 
 </body>
-
     <script src="/static/script/loginJs.js"></script>
     <script src="/static/script/recomJs.js"></script>
     <script src="/static/script/serchbarJs.js"></script>
