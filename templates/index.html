@@ -16,54 +16,53 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
             integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
             crossorigin="anonymous"></script>
-                
-    
+
 
     <!-- 구글폰트 -->
     <link href="https://fonts.googleapis.com/css?family=Stylish&display=swap" rel="stylesheet">
 
     <title>Title</title>
 
-    <!-- CSS -->    
-    <link rel= "stylesheet" type="text/css" href="/static/css/loginStyle.css">
-    <link rel= "stylesheet" type="text/css" href="/static/css/recomStyle.css">
-    <link rel= "stylesheet" type="text/css" href="/static/css/serchbarStyle.css">
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="/static/css/loginStyle.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/recomStyle.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/serchbarStyle.css">
 
-    </head>
+</head>
 <body>
 
 <nav>
     <i></i>
     <span class="title">뉴편함</span>
     <div class="button_box">
-        <input class="btn btn-primary signup_btn" type="button" value="회원가입" >
+        <input class="btn btn-primary signup_btn" type="button" value="회원가입">
         <input class="btn btn-primary login_btn" type="button" value="로그인">
-    </div>    
+    </div>
 </nav>
 <div class="login">
     <section class="signup_section">
         <span>회원가입</span>
         <div class="input-group mb-3">
             <div class="input-group-prepend">
-              <span class="input-group-text" id="inputGroup-sizing-default">이름</span>
+                <span class="input-group-text" id="inputGroup-sizing-default">이름</span>
             </div>
             <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
         </div>
         <div class="input-group mb-3">
             <div class="input-group-prepend">
-              <span class="input-group-text" id="inputGroup-sizing-default">메일</span>
+                <span class="input-group-text" id="inputGroup-sizing-default">메일</span>
             </div>
             <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
         </div>
         <div class="input-group mb-3">
             <div class="input-group-prepend">
-              <span class="input-group-text" id="inputGroup-sizing-default">비밀번호</span>
+                <span class="input-group-text" id="inputGroup-sizing-default">비밀번호</span>
             </div>
             <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
         </div>
         <div class="input-group mb-3">
             <div class="input-group-prepend">
-              <span class="input-group-text" id="inputGroup-sizing-default">비밀번호 확인</span>
+                <span class="input-group-text" id="inputGroup-sizing-default">비밀번호 확인</span>
             </div>
             <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
         </div>
@@ -73,26 +72,70 @@
         로그인
         <div class="input-group mb-3">
             <div class="input-group-prepend">
-              <span class="input-group-text" id="inputGroup-sizing-default">이메일</span>
+                <span class="input-group-text" id="inputGroup-sizing-default">이메일</span>
             </div>
             <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
         </div>
         <div class="input-group mb-3">
             <div class="input-group-prepend">
-              <span class="input-group-text" id="inputGroup-sizing-default">비밀번호</span>
+                <span class="input-group-text" id="inputGroup-sizing-default">비밀번호</span>
             </div>
             <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
         </div>
         <button type="button" class="btn btn-info">로그인</button>
     </section>
 </div>
+
+
+<div class="searchbar">
+    <!--    검색 -->
+    <div class="col-lg-6">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="검색어를 입력하세요">
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button">검색</button>
+              </span>
+        </div><!-- /input-group -->
+    </div><!-- /.col-lg-6 -->
+    <button type="button" class="btn btn-default">새로운 뉴스레터</button>
+    <!--    뉴스레터 등록 div-->
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">제목</span>
+        </div>
+        <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">카테고리</span>
+        </div>
+        <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">뉴스레터 URL</span>
+        </div>
+        <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">뉴스레터 설명</span>
+        </div>
+        <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+    </div>
+    <button type="button" class="btn btn-default">등록</button>
+</div>
+
 <div></div>
 <div></div>
 
+
+</div>
+
 </body>
-    <script src="/static/script/loginJs.js"></script>
-    <script src="/static/script/recomJs.js"></script>
-    <script src="/static/script/serchbarJs.js"></script>
+<script src="/static/script/loginJs.js"></script>
+<script src="/static/script/recomJs.js"></script>
+<script src="/static/script/serchbarJs.js"></script>
 </html>
 
 
