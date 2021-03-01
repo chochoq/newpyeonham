@@ -1,6 +1,5 @@
 .searchbar{
-    background-color: tan;
-    width: 900px;
+    width: 1500px;
     margin: auto;
 }
 
@@ -9,9 +8,11 @@
 }
 
 .search_insert{
-    margin-left: 300px;
+    text-align: center;
+
 }
 
-.new_news{
-
+.input_box{
+    width: 1500px;
+    padding-left: 500px;
 }

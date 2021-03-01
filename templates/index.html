@@ -43,25 +43,25 @@
         <span>회원가입</span>
         <div class="input-group mb-3">
             <div class="input-group-prepend">
-                <span class="input-group-text" id="inputGroup-sizing-default">이름</span>
+                <span class="input-group-text" >이름</span>
             </div>
             <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
         </div>
         <div class="input-group mb-3">
             <div class="input-group-prepend">
-                <span class="input-group-text" id="inputGroup-sizing-default">메일</span>
+                <span class="input-group-text" >메일</span>
             </div>
             <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
         </div>
         <div class="input-group mb-3">
             <div class="input-group-prepend">
-                <span class="input-group-text" id="inputGroup-sizing-default">비밀번호</span>
+                <span class="input-group-text" >비밀번호</span>
             </div>
             <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
         </div>
         <div class="input-group mb-3">
             <div class="input-group-prepend">
-                <span class="input-group-text" id="inputGroup-sizing-default">비밀번호 확인</span>
+                <span class="input-group-text" >비밀번호 확인</span>
             </div>
             <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
         </div>
@@ -71,13 +71,13 @@
         로그인
         <div class="input-group mb-3">
             <div class="input-group-prepend">
-                <span class="input-group-text" id="inputGroup-sizing-default">이메일</span>
+                <span class="input-group-text" >이메일</span>
             </div>
             <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
         </div>
         <div class="input-group mb-3">
             <div class="input-group-prepend">
-                <span class="input-group-text" id="inputGroup-sizing-default">비밀번호</span>
+                <span class="input-group-text" >비밀번호</span>
             </div>
             <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
         </div>
@@ -94,40 +94,40 @@
             <span class="input-group-btn">
                 <button class="btn btn-default" type="button">검색</button>
               </span>
-            <button type="button" class="btn btn-default new_news" onclick="new_newsletter()">새로운 뉴스레터</button>
+            <button type="button" class="btn btn-default new_news" onclick="new_newsletter()" value="뉴스레터추가">새로운 뉴스레터</button>
         </div><!-- /input-group -->
     </div><!-- /.col-lg-6 -->
 
     <!--    뉴스레터 등록 div-->
-    <div class="search_insert">
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <span class="input-group-text">제목</span>
+    <div class="search_insert" id="search_insert" style="display: none">
+        <div class="input_box">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">제목</span>
+                </div>
+                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
             </div>
-            <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
-        </div>
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <span class="input-group-text">카테고리</span>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">카테고리</span>
+                </div>
+                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
             </div>
-            <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
-        </div>
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <span class="input-group-text">뉴스레터 URL</span>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">뉴스레터 URL</span>
+                </div>
+                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
             </div>
-            <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
-        </div>
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <textarea  class="input-group-text">뉴스레터 설명</textarea>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <textarea  class="input-group-text">뉴스레터 설명</textarea>
+                </div>
+                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
             </div>
-            <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
         </div>
         <button type="button" class="btn btn-default btn-info">등록</button>
     </div>
-
-
 </div>
 
 <div></div>
