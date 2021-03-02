@@ -27,7 +27,9 @@
     <link rel="stylesheet" type="text/css" href="/static/css/letterStyle.css">
     <link rel="stylesheet" type="text/css" href="/static/css/searchbarStyle.css">
 
-
+    <script>
+        let newsletters = {{ newsletters }};
+    </script>
 </head>
 <body>
 
@@ -93,7 +95,7 @@
         <div class="input-group">
             <input type="text" class="form-control" placeholder="검색어를 입력하세요">
             <span class="input-group-btn">
-                <button class="btn btn-default" type="button">검색</button>
+                <button class="btn btn-default" type="button" onclick="search_newsletter()">검색</button>
               </span>
             <button type="button" class="btn btn-default new_news" onclick="new_newsletter()" value="뉴스레터추가">새로운 뉴스레터
             </button>

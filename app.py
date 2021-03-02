@@ -66,6 +66,12 @@ def insert_newsletter():
 
     return jsonify({'msg': '뉴스레터 완료되었습니다'})
 
+# 검색
+@app.route('/index/search', methods=['GET'])
+def show_stars():
+    sample_receive = request.args.get('sample_give')
+    print(sample_receive)
+    return jsonify({'msg': 'list 연결되었습니다!'})
 
 # 좋아요 관심
 @app.route('/index/like', methods=['POST'])
@@ -89,14 +95,6 @@ def comment():
     sample_receive = request.form['sample_give']
     print(sample_receive)
     return jsonify({'msg': '이 요청은 POST!'})
-
-
-# 검색
-@app.route('/index/search', methods=['GET'])
-def search():
-    sample_receive = request.args.get('sample_give')
-    print(sample_receive)
-    return jsonify({'msg': '이 요청은 GET!'})
 
 
 # 카테고리분류
