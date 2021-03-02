@@ -9,10 +9,10 @@
                 success: function (response) {
                     let letter = response['all_letters']
                     for (let i = 0; i < letter.length; i++) {
-                        let title = articles[i]['title']
-                        let image = articles[i]['image']
-                        let url = articles[i]['url']
-                        let desc = articles[i]['desc']
+                        let title = letters[i]['title']
+                        let image = letters[i]['image']
+                        let url = letters[i]['url']
+                        let desc = letters[i]['desc']
 
 
                         temp_html = `<div class="letter">
@@ -22,9 +22,10 @@
                     <div class="leteer_body">
                         <a target="_blank" href="${url}" class="letter-title">${title}</a>
                         <p class="letter-text">${desc}</p>
-                       </div>
+                        <p class="letter-text comment">${comment}</p>
+                    </div>
                 </div>`
-                        $('#letter-box').append(temp_html)
+                        $('#cards-box').append(temp_html)
                     }
                 }
             })
