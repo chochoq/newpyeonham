@@ -150,7 +150,8 @@
             <a target="_blank" href="#" class="letter-title">여기 기사 제목이 들어가죠</a>
             <p class="letter-text">기사의 요약 내용이 들어갑니다</p>
             <p class="letter-text comment">여기에 코멘트가 들어갑니다.</p>
-            <div class="startRadio">
+               <footer class="letter-footer">
+                    <div class="startRadio">
                 <label class="startRadio__box">
                     <input type="radio" name="star" id="">
                     <span class="startRadio__img"><span class="blind">별 1개</span></span>
@@ -175,23 +176,16 @@
                     <input type="radio" name="star" id="">
                     <span class="startRadio__img"><span class="blind">별 3.5개</span></span>
                 </label>
-                <label class="startRadio__box">
-                    <input type="radio" name="star" id="">
-                    <span class="startRadio__img"><span class="blind">별 4개</span></span>
-                </label>
-                <label class="startRadio__box">
-                    <input type="radio" name="star" id="">
-                    <span class="startRadio__img"><span class="blind">별 4.5개</span></span>
-                </label>
-                <label class="startRadio__box">
-                    <input type="radio" name="star" id="">
-                    <span class="startRadio__img"><span class="blind">별 5개</span></span>
-                </label>
-                <label class="startRadio__box">
-                    <input type="radio" name="star" id="">
-                    <span class="startRadio__img"><span class="blind">별 5.5개</span></span>
-                </label>
+
             </div>
+                    <a href="#" onclick="deleteLetter()" class="card-footer-item has-text-danger">
+                        삭제
+                        <span class="icon">
+              <i class="fas fa-ban"></i>
+            </span>
+                    </a>
+                </footer>
+
         </div>
     </div>
     <div class="letter">
