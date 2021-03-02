@@ -27,6 +27,7 @@
     <link rel="stylesheet" type="text/css" href="/static/css/letterStyle.css">
     <link rel="stylesheet" type="text/css" href="/static/css/searchbarStyle.css">
 
+
 </head>
 <body>
 
@@ -106,32 +107,32 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text">제목</span>
                 </div>
-                <input type="text" class="form-control" aria-label="Default"
+                <input id="letter-title" type="text" class="form-control" aria-label="Default"
                        aria-describedby="inputGroup-sizing-default">
             </div>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text">카테고리</span>
                 </div>
-                <input type="text" class="form-control" aria-label="Default"
+                <input id="letter-category" type="text" class="form-control" aria-label="Default"
                        aria-describedby="inputGroup-sizing-default">
             </div>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text">뉴스레터 URL</span>
                 </div>
-                <input type="text" class="form-control" aria-label="Default"
+                <input id="letter-url" type="text" class="form-control" aria-label="Default"
                        aria-describedby="inputGroup-sizing-default">
             </div>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <textarea class="input-group-text">뉴스레터 설명</textarea>
                 </div>
-                <input type="text" class="form-control" aria-label="Default"
+                <input id="letter-desc" type="text" class="form-control" aria-label="Default"
                        aria-describedby="inputGroup-sizing-default">
             </div>
         </div>
-        <button type="button" class="btn btn-default btn-info">등록</button>
+        <button type="button" class="btn btn-default btn-info" onclick="insert_newsletter()">등록</button>
     </div>
 </div>
 

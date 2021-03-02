@@ -2,6 +2,9 @@ from flask import Flask, render_template, jsonify, request
 
 app = Flask(__name__)
 
+import requests
+from bs4 import BeautifulSoup
+
 from pymongo import MongoClient
 
 client = MongoClient('localhost', 27017)
@@ -34,10 +37,34 @@ def login():
 
 # 뉴스레터 추가
 @app.route('/index/insert', methods=['POST'])
-def insert():
-    sample_receive = request.form['sample_give']
-    print(sample_receive)
-    return jsonify({'msg': '이 요청은 POST!'})
+def insert_newsletter():
+    title_receive = request.form['title_give']
+    category_receive = request.form['category_give']
+    url_receive = request.form['url_give']
+    desc_receive = request.form['desc_give']
+
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36'}
+    data = requests.get(url_receive, headers=headers)
+
+    soup = BeautifulSoup(data.text, 'html.parser')
+
+    title = soup.select_one('meta[property="og:title"]')['content']
+    image = soup.select_one('meta[property="og:image"]')['content']
+    desc = soup.select_one('meta[property="og:description"]')['content']
+
+    doc = {
+        'title': title,
+        'image': image,
+        'desc': desc,
+        'url': url_receive,
+        'title': title_receive,
+        'category': category_receive,
+        'desc_newsletter': desc_receive
+    }
+    db.newsletters.insert_one(doc)
+
+    return jsonify({'msg': '뉴스레터 완료되었습니다'})
 
 
 # 좋아요 관심
