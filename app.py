@@ -20,22 +20,22 @@ db = client.dbsparta
 @app.route('/')
 def home():
     token_receive = request.cookies.get('mytoken')
-    print(token_receive)    
-    
-    try:                
+    print(token_receive)
+
+    try:
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
         user_info = db.user.find_one({"email": payload['email']})
-        
-        newsletters = list(db.newsletters.aggregate([  {'$match': { 'title': {'$nin': user_info['hide']}}},
-                                                        { '$sample': { 'size': 8 }}
-                                                    ]))
-                                                
+
+        newsletters = list(db.newsletters.aggregate([{'$match': {'title': {'$nin': user_info['hide']}}},
+                                                     {'$sample': {'size': 8}}
+                                                     ]))
+
         return render_template('index.html', status=user_info["name"], newsletters=newsletters)
     except jwt.ExpiredSignatureError:
-        newsletters = list(db.newsletters.aggregate([{'$sample': { 'size': 8 }}]))
+        newsletters = list(db.newsletters.aggregate([{'$sample': {'size': 8}}]))
         return render_template('index.html', status="expire", newsletters=newsletters)
     except jwt.exceptions.DecodeError:
-        newsletters = list(db.newsletters.aggregate([{'$sample': { 'size': 8 }}]))
+        newsletters = list(db.newsletters.aggregate([{'$sample': {'size': 8}}]))
         return render_template('index.html', newsletters=newsletters)
     # DB에서 저장된 단어 찾아서 HTML에 나타내기
 
@@ -50,7 +50,7 @@ def signup():
 
     pw_hash = hashlib.sha256(password.encode('utf-8')).hexdigest()
 
-    db.user.insert_one({'name': name, 'email': email, 'password': pw_hash,'hide':[], 'comment':[],'like':[]})
+    db.user.insert_one({'name': name, 'email': email, 'password': pw_hash, 'hide': [], 'comment': [], 'like': []})
 
     return jsonify({'result': 'success'})
 
@@ -147,13 +147,17 @@ def post_articles():
     return jsonify({'msg': '저장완료'})
 
 
-
 # 코멘트
 @app.route('/index/comment', methods=['POST'])
 def comment():
-    sample_receive = request.form['sample_give']
-    print(sample_receive)
-    return jsonify({'msg': '이 요청은 POST!'})
+    token_receive = request.cookies.get('mytoken')
+    print('토오오큰', token_receive)
+    payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+
+    comment_receive = request.form['comment_give']
+    db.user.insert_one({"email": payload['email']}, {"$push": {"comment": comment_receive}})
+
+    return jsonify({'msg': '이제 [' + comment_receive + '] 에 작성되었습니다.'})
 
 
 # 카테고리분류
@@ -181,13 +185,13 @@ def show_letters():
 @app.route('/api/delete', methods=['POST'])
 def delete_letters():
     token_receive = request.cookies.get('mytoken')
-    print('토오오큰',token_receive)
+    print('토오오큰', token_receive)
     payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-    
+
     title_receive = request.form['title_give']
-    db.user.update_one({"email": payload['email']},{ "$push": { "hide":title_receive  }}) 
-        
-    return jsonify({'msg': '이제 ['+title_receive+'] 뉴스레터는 보이지않아요!'})
+    db.user.update_one({"email": payload['email']}, {"$push": {"hide": title_receive}})
+
+    return jsonify({'msg': '이제 [' + title_receive + '] 뉴스레터는 보이지않아요!'})
 
 
 if __name__ == '__main__':

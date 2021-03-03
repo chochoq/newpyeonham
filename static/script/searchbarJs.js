@@ -1,4 +1,4 @@
-//뉴스레터 추가버튼 클릭시
+//뉴스레터 추가하기 버튼 클릭시
 function new_newsletter() {
     let search_box = $('#search_insert')
     if (search_box.css("display") === "block") {
@@ -8,7 +8,7 @@ function new_newsletter() {
     }
 }
 
-
+//뉴스레터 추가하기
 function insert_newsletter() {
     let url = $('#letter-url').val()
     let title = $('#letter-title').val()
