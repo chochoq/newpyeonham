@@ -28,9 +28,9 @@
     <link rel="stylesheet" type="text/css" href="/static/css/searchbarStyle.css">
 
     <script>
-        {# let newsletters = {{ newsletters }}; #}
+        let newsletters = '{{ newsletters }}'
         let status = '{{ status }}'
-        
+
     </script>
 </head>
 <body>
@@ -39,11 +39,11 @@
     <i></i>
     <span class="title">뉴편함</span>
     <div class="button_box">
-            {# <input class="btn btn-primary " type="button" onclick="insertData()" value="데이터넣기">         #}
-            <input class="btn btn-primary open_signup_btn open_btn" type="button" value="회원가입">
-            <input class="btn btn-primary open_login_btn open_btn" type="button" value="로그인">        
-            <span class="user_component">{{status}}님 환영합니다!</span>
-            <input class="btn btn-primary logout_btn user_component" type="button" value="로그아웃">
+       <input class="btn btn-primary " type="button" onclick="insertData()" value="데이터넣기">
+        <input class="btn btn-primary open_signup_btn open_btn" type="button" value="회원가입">
+        <input class="btn btn-primary open_login_btn open_btn" type="button" value="로그인">
+        <span class="user_component">{{status}}님 환영합니다!</span>
+        <input class="btn btn-primary logout_btn user_component" type="button" value="로그아웃">
     </div>
 </nav>
 <div class="login">
@@ -149,56 +149,27 @@
     </div>
 </div>
 
-
+<!--뉴스레터 리스트-->
 <div id="letter-box" class="letter-columns">
     {% for newsletter in newsletters %}
     <div id="newsletters-{{ newsletter.title_news }}" class="letter" style="size:300px">
-        <img class="letter-img-top"
-             src="https://www.eurail.com/content/dam/images/eurail/Italy%20OCP%20Promo%20Block.adaptive.767.1535627244182.jpg"
-             alt="letter image cap">
-        <div class="letter-body">
-            <a target="_blank" href="#" class="letter-title">{{ newsletter.title }}</a>
-            <p class="letter-text">{{newsletter.category}}</p>
-            <p class="letter-desc">{{newsletter.desc}}</p>
-            <p class="letter-text comment">여기에 코멘트가 들어갑니다.</p>
-            <footer class="letter-footer">
-                <div class="startRadio">
-                    <label class="startRadio__box">
-                        <input type="radio" name="star" id="">
-                        <span class="startRadio__img"><span class="blind">별 1개</span></span>
-                    </label>
-                    <label class="startRadio__box">
-                        <input type="radio" name="star" id="">
-                        <span class="startRadio__img"><span class="blind">별 1.5개</span></span>
-                    </label>
-                    <label class="startRadio__box">
-                        <input type="radio" name="star" id="">
-                        <span class="startRadio__img"><span class="blind">별 2개</span></span>
-                    </label>
-                    <label class="startRadio__box">
-                        <input type="radio" name="star" id="">
-                        <span class="startRadio__img"><span class="blind">별 2.5개</span></span>
-                    </label>
-                    <label class="startRadio__box">
-                        <input type="radio" name="star" id="">
-                        <span class="startRadio__img"><span class="blind">별 3개</span></span>
-                    </label>
-                    <label class="startRadio__box">
-                        <input type="radio" name="star" id="">
-                        <span class="startRadio__img"><span class="blind">별 3.5개</span></span>
-                    </label>
-
-                </div>
-                <a href="#" onclick="deleteLetter()" class="card-footer-item has-text-danger">
-                    삭제
-                    <span class="icon">
-              <i class="fas fa-ban"></i>
-            </span>
-                </a>
-            </footer>
+        <img class="card-img-top" src="{{newsletter.image}}" alt="Card image cap">
+        <div class="card-body">
+            <a target="_blank" href="{{newsletter.url}}" class="card-title">{{newsletter.title}}</a>
+            <p class="category">{{newsletter.category}}</p>
+            <p class="card-text">{{newsletter.desc}}</p>
+            <p class="card-text comment"></p>
         </div>
+        <footer class="card-footer">
+        <a href="#" onclick="deleteLetters('{{newsletter.title}}')" class="card-footer-item has-text-danger">삭제<span class="icon">
+                                              <i class="fas fa-ban"></i>
+                                            </span>
+        </a>
+    </footer>
     </div>
-    {% endfor %}
+
+</div>
+{% endfor %}
 </div>
 
 </div>

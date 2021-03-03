@@ -9,7 +9,6 @@ from bs4 import BeautifulSoup
 
 app = Flask(__name__)
 
-
 from pymongo import MongoClient
 
 client = MongoClient('localhost', 27017)
@@ -26,14 +25,12 @@ def home():
     try:
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
         user_info = db.user.find_one({"email": payload['email']})
-        return render_template('index.html', status=user_info["name"],newsletters=newsletters)
+        return render_template('index.html', status=user_info["name"], newsletters=newsletters)
     except jwt.ExpiredSignatureError:
-        return render_template('index.html', status="expire",newsletters=newsletters)
+        return render_template('index.html', status="expire", newsletters=newsletters)
     except jwt.exceptions.DecodeError:
         return render_template('index.html', newsletters=newsletters)
     # DB에서 저장된 단어 찾아서 HTML에 나타내기
-    
-    
 
 
 ## API 역할을 하는 부분
@@ -57,7 +54,7 @@ def insertSample():
         'title': 'ㅇㅎ! 아하레터',
         'url': 'https://page.stibee.com/subscriptions/61765?groupIds=56635',
         'category': '자기계발',
-        'img': 'https://s3.ap-northeast-2.amazonaws.com/img.stibee.com/26042_list_61765_header_image.jpg?v=1598419760',
+        'image': 'https://s3.ap-northeast-2.amazonaws.com/img.stibee.com/26042_list_61765_header_image.jpg?v=1598419760',
         'desc': '작심삼일 반복하면 못할것이 없습니다'
     }
 
@@ -65,7 +62,7 @@ def insertSample():
         'title': '그랩의 IT 뉴스레터',
         'url': 'https://maily.so/grabnews',
         'category': 'IT',
-        'img': 'https://cdn.maily.so/maily66df3af8fbfb998cda1caa2f235e7e8f1600609966',
+        'image': 'https://cdn.maily.so/maily66df3af8fbfb998cda1caa2f235e7e8f1600609966',
         'desc': '매주 월요일, IT 콘텐츠 큐레이션 & 잘 읽히는 IT 개발지식을 제공합니다.'
     }
 
@@ -73,7 +70,7 @@ def insertSample():
         'title': 'newneek',
         'url': 'https://newneek.co/?utm_medium=newsletter&utm_source=newneek&utm_campaign=dec21',
         'category': '종합',
-        'img': 'https://newneek.co/static/media/gosum-home.7b7f5b6b.png',
+        'image': 'https://newneek.co/static/media/gosum-home.7b7f5b6b.png',
         'desc': '월/수/금 아침마다 세상 돌아가는 소식을 메일로 받아보세요'
     }
 
@@ -87,15 +84,16 @@ def insertSample():
 # 로그인
 SECRET_KEY = 'WECANDOANYTHING'
 
+
 @app.route('/index/login', methods=['POST'])
 def login():
     email = request.form['email']
     password = request.form['password']
-    
+
     pw_hash = hashlib.sha256(password.encode('utf-8')).hexdigest()
 
     result = db.user.find_one({'email': email, 'password': pw_hash})
-    
+
     # 찾으면 JWT 토큰을 만들어 발급합니다.
     if result is not None:
         # JWT 토큰에는, payload와 시크릿키가 필요합니다.
@@ -104,10 +102,10 @@ def login():
         # exp에는 만료시간을 넣어줍니다. 만료시간이 지나면, 시크릿키로 토큰을 풀 때 만료되었다고 에러가 납니다.
         payload = {
             'email': email,
-            'exp': datetime.datetime.utcnow() + datetime.timedelta(seconds=60*60)
+            'exp': datetime.datetime.utcnow() + datetime.timedelta(seconds=60 * 60)
         }
-        token = jwt.encode(payload, SECRET_KEY, algorithm='HS256') #.decode('utf-8')
-        print('token',token)
+        token = jwt.encode(payload, SECRET_KEY, algorithm='HS256')  # .decode('utf-8')
+        print('token', token)
         # token을 줍니다.
         return jsonify({'result': 'success', 'token': token})
     # 찾지 못하면
@@ -150,23 +148,6 @@ def show_stars():
     return jsonify({'msg': 'list 연결되었습니다!'})
 
 
-
-# 좋아요 관심
-@app.route('/index/like', methods=['POST'])
-def like():
-    sample_receive = request.form['sample_give']
-    print(sample_receive)
-    return jsonify({'msg': '이 요청은 POST!'})
-
-
-# 구독페이지 숨김
-@app.route('/index/hide', methods=['POST'])
-def hide():
-    sample_receive = request.form['sample_give']
-    print(sample_receive)
-    return jsonify({'msg': '이 요청은 POST!'})
-
-
 # 코멘트
 @app.route('/index/comment', methods=['POST'])
 def comment():
@@ -191,10 +172,17 @@ def refresh():
     return jsonify({'msg': '이 요청은 GET!'})
 
 
-def delete_letter():
+@app.route('/api/list', methods=['GET'])
+def show_letters():
+    news_letters = list(db.newsletters.find({}, {'_id': False}))
+    return jsonify({'news_letters': news_letters})
+
+
+@app.route('/api/delete', methods=['POST'])
+def delete_letters():
     title_receive = request.form['title_give']
-    db.letters.delete_one({'title': title_receive})
-    return jsonify({'msg': '삭제'})
+    db.newsletters.delete_one({'title': title_receive})
+    return jsonify({'msg': '삭제 완료!'})
 
 
 if __name__ == '__main__':
