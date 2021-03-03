@@ -74,3 +74,22 @@ const onLogin = ()=>{
     
     console.log(email, password)
 }
+
+const insertData = ()=>{
+    console.log('dd')
+    $.ajax({
+        type: "POST",
+        url: "/index/insertSample",
+        data: {
+            name:'gg'
+        },
+        success: function (response) {
+            if (response['result'] == 'success') {
+                alert('데이터 넣음')
+                //clearSignupComponent();
+            } else {
+                alert(response['msg'])
+            }
+        }
+    })
+}

@@ -1,4 +1,5 @@
 from flask import Flask, render_template, jsonify, request
+from flask.helpers import url_for
 import jwt
 import datetime
 import hashlib
@@ -35,6 +36,37 @@ def signup():
 
     return jsonify({'result': 'success'})
 
+@app.route('/index/insertSample', methods=['POST'])
+def insertSample():
+    letter1 = {
+        'title' : 'ㅇㅎ! 아하레터',
+        'url' : 'https://page.stibee.com/subscriptions/61765?groupIds=56635',
+        'category' : '자기계발',
+        'img' : 'https://s3.ap-northeast-2.amazonaws.com/img.stibee.com/26042_list_61765_header_image.jpg?v=1598419760',
+        'desc' : '작심삼일 반복하면 못할것이 없습니다'
+    }
+
+    letter2 = {
+        'title' : '그랩의 IT 뉴스레터',
+        'url' : 'https://maily.so/grabnews',
+        'category' : 'IT',
+        'img' : 'https://cdn.maily.so/maily66df3af8fbfb998cda1caa2f235e7e8f1600609966',
+        'desc' : '매주 월요일, IT 콘텐츠 큐레이션 & 잘 읽히는 IT 개발지식을 제공합니다.'
+    }
+    
+    letter3 = {
+        'title' : 'newneek',
+        'url' : 'https://newneek.co/?utm_medium=newsletter&utm_source=newneek&utm_campaign=dec21',
+        'category' : '종합',
+        'img' : 'https://newneek.co/static/media/gosum-home.7b7f5b6b.png',
+        'desc' : '월/수/금 아침마다 세상 돌아가는 소식을 메일로 받아보세요'
+    }
+
+    db.newsletters.insert_one(letter1)
+    db.newsletters.insert_one(letter2)
+    db.newsletters.insert_one(letter3)
+
+    return jsonify({'result': 'success'})
 
 # 로그인
 SECRET_KEY = 'WECANDOANYTHING'
