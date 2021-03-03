@@ -19,7 +19,15 @@ db = client.dbsparta
 ## route('/') 등의 주소가 같으면 안됩니다.
 @app.route('/')
 def home():
-    return render_template('index.html')
+    token_receive = request.cookies.get('mytoken')
+    try:
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        user_info = db.user.find_one({"email": payload['email']})
+        return render_template('index.html', msg=user_info["name"])
+    except jwt.ExpiredSignatureError:
+        return render_template('index.html', msg="로그인 시간이 만료되었습니다.")
+    except jwt.exceptions.DecodeError:
+        return render_template('index.html')
 
 
 ## API 역할을 하는 부분
@@ -71,12 +79,33 @@ def insertSample():
 # 로그인
 SECRET_KEY = 'WECANDOANYTHING'
 
-
 @app.route('/index/login', methods=['POST'])
 def login():
-    sample_receive = request.form['sample_give']
-    print(sample_receive)
-    return jsonify({'msg': '이 요청은 POST!'})
+    email = request.form['email']
+    password = request.form['password']
+    
+    pw_hash = hashlib.sha256(password.encode('utf-8')).hexdigest()
+
+    result = db.user.find_one({'email': email, 'password': pw_hash})
+    
+    # 찾으면 JWT 토큰을 만들어 발급합니다.
+    if result is not None:
+        # JWT 토큰에는, payload와 시크릿키가 필요합니다.
+        # 시크릿키가 있어야 토큰을 디코딩(=풀기) 해서 payload 값을 볼 수 있습니다.
+        # 아래에선 id와 exp를 담았습니다. 즉, JWT 토큰을 풀면 유저ID 값을 알 수 있습니다.
+        # exp에는 만료시간을 넣어줍니다. 만료시간이 지나면, 시크릿키로 토큰을 풀 때 만료되었다고 에러가 납니다.
+        payload = {
+            'email': email,
+            'exp': datetime.datetime.utcnow() + datetime.timedelta(seconds=60*60)
+        }
+        token = jwt.encode(payload, SECRET_KEY, algorithm='HS256') #.decode('utf-8')
+        print('token',token)
+        # token을 줍니다.
+        return jsonify({'result': 'success', 'token': token})
+    # 찾지 못하면
+    else:
+        return jsonify({'result': 'fail', 'msg': '아이디/비밀번호가 일치하지 않습니다.'})
+
 
 
 # 뉴스레터 추가
