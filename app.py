@@ -20,16 +20,25 @@ db = client.dbsparta
 @app.route('/')
 def home():
     token_receive = request.cookies.get('mytoken')
-    print(token_receive)
-    #newsletters = list(db.newsletters.find({}, {"_id": False}))
-    newsletters = list(db.newsletters.aggregate([{'$sample': { 'size': 8 } }]))
-    try:
+    print(token_receive)    
+    
+    try:        
+        
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
         user_info = db.user.find_one({"email": payload['email']})
+        print(user_info['hide'])
+        #newsletters = list(db.newsletters.find( {'title':{'$nin':user_info['hide']}}))
+
+        newsletters = list(db.newsletters.aggregate([  {'$match': { 'title': {'$nin': user_info['hide']}}},
+                                                        { '$sample': { 'size': 8 }}
+                                                    ]))
+                                                
         return render_template('index.html', status=user_info["name"], newsletters=newsletters)
     except jwt.ExpiredSignatureError:
+        newsletters = list(db.newsletters.aggregate([{'$sample': { 'size': 8 }}]))
         return render_template('index.html', status="expire", newsletters=newsletters)
     except jwt.exceptions.DecodeError:
+        newsletters = list(db.newsletters.aggregate([{'$sample': { 'size': 8 }}]))
         return render_template('index.html', newsletters=newsletters)
     # DB에서 저장된 단어 찾아서 HTML에 나타내기
 
@@ -174,9 +183,14 @@ def show_letters():
 
 @app.route('/api/delete', methods=['POST'])
 def delete_letters():
+    token_receive = request.cookies.get('mytoken')
+    print('토오오큰',token_receive)
+    payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+    
     title_receive = request.form['title_give']
-    db.newsletters.delete_one({'title': title_receive})
-    return jsonify({'msg': '삭제 완료!'})
+    db.user.update_one({"email": payload['email']},{ "$push": { "hide":title_receive  }}) 
+        
+    return jsonify({'msg': '이제 ['+title_receive+'] 뉴스레터는 보이지않아요!'})
 
 
 if __name__ == '__main__':
