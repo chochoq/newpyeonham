@@ -26,12 +26,9 @@ def home():
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
         user_info = db.user.find_one({"email": payload['email']})
         
-        if (user_info['hide']):
-            newsletters = list(db.newsletters.aggregate([  {'$match': { 'title': {'$nin': user_info['hide']}}},
+        newsletters = list(db.newsletters.aggregate([  {'$match': { 'title': {'$nin': user_info['hide']}}},
                                                         { '$sample': { 'size': 8 }}
                                                     ]))
-        else :  
-            newsletters = list(db.newsletters.aggregate([{'$sample': { 'size': 8 }}]))                                          
                                                 
         return render_template('index.html', status=user_info["name"], newsletters=newsletters)
     except jwt.ExpiredSignatureError:
@@ -53,7 +50,7 @@ def signup():
 
     pw_hash = hashlib.sha256(password.encode('utf-8')).hexdigest()
 
-    db.user.insert_one({'name': name, 'email': email, 'password': pw_hash})
+    db.user.insert_one({'name': name, 'email': email, 'password': pw_hash,'hide':[], 'comment':[],'like':[]})
 
     return jsonify({'result': 'success'})
 
