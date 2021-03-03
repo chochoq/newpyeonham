@@ -107,7 +107,7 @@ const onLogin = ()=>{
 
 // 로그아웃
 logout_btn.addEventListener('click',e=>{
-    console.log('로그아웃')
+    document.cookie = 'token=';
 })
 
 const insertData = ()=>{
