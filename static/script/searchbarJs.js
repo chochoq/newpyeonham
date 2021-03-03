@@ -29,14 +29,4 @@ function insert_newsletter() {
 }
 
 
-//검색
-function search_newsletter() {
-    $.ajax({
-        type: 'GET',
-        url: '/index/search',
-        data: {},
-        success: function (response) {
-            alert(response['msg']);
-        }
-    });
-}
+

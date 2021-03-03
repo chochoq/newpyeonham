@@ -9,7 +9,6 @@ from bs4 import BeautifulSoup
 
 app = Flask(__name__)
 
-
 from pymongo import MongoClient
 
 client = MongoClient('localhost', 27017)
@@ -22,7 +21,7 @@ db = client.dbsparta
 def home():
     # DB에서 저장된 단어 찾아서 HTML에 나타내기
     newsletters = list(db.newsletters.find({}, {"_id": False}))
-    return render_template('index.html',newsletters=newsletters)
+    return render_template('index.html', newsletters=newsletters)
 
 
 ## API 역할을 하는 부분
@@ -83,6 +82,7 @@ def login():
     print(sample_receive)
     return jsonify({'msg': '이 요청은 POST!'})
 
+
 @app.route('/index/insert', methods=['POST'])
 def post_articles():
     url_receive = request.form['url_give']
@@ -113,10 +113,13 @@ def post_articles():
 # 검색
 @app.route('/index/search', methods=['GET'])
 def show_stars():
-    sample_receive = request.args.get('sample_give')
-    print(sample_receive)
-    return jsonify({'msg': 'list 연결되었습니다!'})
+    title_receive = request.args.get('title_give')
+    category_receive = request.args.get('category_give')
 
+    search_newsletter = list(db.newsletters.find({'title': title_receive}, {'_id': False}))
+
+    print(search_newsletter)
+    return jsonify({'msg': 'list 연결되었습니다!'}, search_newsletter=search_newsletter)
 
 
 # 좋아요 관심
