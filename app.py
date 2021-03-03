@@ -20,7 +20,9 @@ db = client.dbsparta
 ## route('/') 등의 주소가 같으면 안됩니다.
 @app.route('/')
 def home():
-    return render_template('index.html')
+    # DB에서 저장된 단어 찾아서 HTML에 나타내기
+    newsletters = list(db.newsletters.find({}, {"_id": False}))
+    return render_template('index.html',newsletters=newsletters)
 
 
 ## API 역할을 하는 부분
@@ -94,18 +96,14 @@ def post_articles():
 
     soup = BeautifulSoup(data.text, 'html.parser')
 
-    title = soup.select_one('meta[property="og:title"]')['content']
     image = soup.select_one('meta[property="og:image"]')['content']
-    desc = soup.select_one('meta[property="og:description"]')['content']
 
     doc = {
-        'title': title,
         'image': image,
-        'desc': desc,
         'url': url_receive,
-        'title_news': title_receive,
-        'desc_news': desc_receive,
-        'category_news': category_receive
+        'title': title_receive,
+        'desc': desc_receive,
+        'category': category_receive
     }
 
     db.newsletters.insert_one(doc)
@@ -118,6 +116,7 @@ def show_stars():
     sample_receive = request.args.get('sample_give')
     print(sample_receive)
     return jsonify({'msg': 'list 연결되었습니다!'})
+
 
 
 # 좋아요 관심
