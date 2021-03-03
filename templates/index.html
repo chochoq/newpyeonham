@@ -37,7 +37,7 @@
     <i></i>
     <span class="title">뉴편함</span>
     <div class="button_box">
-    <input class="btn btn-primary " type="button" onclick="insertData()" value="데이터넣기">
+        <input class="btn btn-primary " type="button" onclick="insertData()" value="데이터넣기">
         <input class="btn btn-primary open_signup_btn" type="button" value="회원가입">
         <input class="btn btn-primary open_login_btn" type="button" value="로그인">
     </div>
@@ -49,27 +49,31 @@
             <div class="input-group-prepend">
                 <span class="input-group-text">이름</span>
             </div>
-            <input type="text" id="myname" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+            <input type="text" id="myname" class="form-control" aria-label="Default"
+                   aria-describedby="inputGroup-sizing-default">
         </div>
         <div class="input-group mb-3">
             <div class="input-group-prepend">
                 <span class="input-group-text">메일</span>
             </div>
-            <input type="text" id="email" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+            <input type="text" id="email" class="form-control" aria-label="Default"
+                   aria-describedby="inputGroup-sizing-default">
         </div>
         <div class="input-group mb-3">
             <div class="input-group-prepend">
                 <span class="input-group-text">비밀번호</span>
             </div>
-            <input type="text" id="password" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+            <input type="text" id="password" class="form-control" aria-label="Default"
+                   aria-describedby="inputGroup-sizing-default">
         </div>
         <div class="input-group mb-3">
             <div class="input-group-prepend">
                 <span class="input-group-text">비밀번호 확인</span>
             </div>
-            <input type="text" id="password_check" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+            <input type="text" id="password_check" class="form-control" aria-label="Default"
+                   aria-describedby="inputGroup-sizing-default">
         </div>
-        <button type="button" class="btn btn-info" onclick="onSignup()" >가입하기</button>
+        <button type="button" class="btn btn-info" onclick="onSignup()">가입하기</button>
     </section>
     <section class="login_section">
         로그인
@@ -77,13 +81,15 @@
             <div class="input-group-prepend">
                 <span class="input-group-text ">이메일</span>
             </div>
-            <input type="text" class="form-control login_email_input" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+            <input type="text" class="form-control login_email_input" aria-label="Default"
+                   aria-describedby="inputGroup-sizing-default">
         </div>
         <div class="input-group mb-3">
             <div class="input-group-prepend">
                 <span class="input-group-text ">비밀번호</span>
             </div>
-            <input type="text" class="form-control login_pw_input" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+            <input type="text" class="form-control login_pw_input" aria-label="Default"
+                   aria-describedby="inputGroup-sizing-default">
         </div>
         <button type="button" class="btn btn-info login_btn">로그인</button>
     </section>
@@ -96,7 +102,7 @@
         <div class="input-group">
             <input type="text" class="form-control" placeholder="검색어를 입력하세요">
             <span class="input-group-btn">
-                <button class="btn btn-default" type="button">검색</button>
+                <button class="btn btn-default" type="button" onclick="search_newsletter()">검색</button>
               </span>
             <button type="button" class="btn btn-default new_news" onclick="new_newsletter()" value="뉴스레터추가">새로운 뉴스레터
             </button>
