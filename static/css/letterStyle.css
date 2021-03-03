@@ -9,7 +9,7 @@
 .letter {
 
     width: 300px;
-    margin: 20px auto;
+    margin: 10px;
     padding: 10px;
     border: black solid;
     border-radius: 5px;
@@ -75,4 +75,24 @@
     width: 500px;
     height: 40px;
     pointer-events: none;
+}
+
+.letter-columns {
+    display: flex;    
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.refresh{    
+    width: 200px;
+    height: 200px;
+    cursor: pointer;
+}
+
+.card-wrapper{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 80%;
+    
 }

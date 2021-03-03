@@ -21,7 +21,8 @@ db = client.dbsparta
 def home():
     token_receive = request.cookies.get('mytoken')
     print(token_receive)
-    newsletters = list(db.newsletters.find({}, {"_id": False}))
+    #newsletters = list(db.newsletters.find({}, {"_id": False}))
+    newsletters = list(db.newsletters.aggregate([{'$sample': { 'size': 8 } }]))
     try:
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
         user_info = db.user.find_one({"email": payload['email']})
