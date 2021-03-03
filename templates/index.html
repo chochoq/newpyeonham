@@ -38,7 +38,7 @@
     <i></i>
     <span class="title">뉴편함</span>
     <div class="button_box">
-    <input class="btn btn-primary " type="button" onclick="insertData()" value="데이터넣기">
+        <input class="btn btn-primary " type="button" onclick="insertData()" value="데이터넣기">
         <input class="btn btn-primary open_signup_btn" type="button" value="회원가입">
         <input class="btn btn-primary open_login_btn" type="button" value="로그인">
         <input class="btn btn-primary logout_btn" type="button" value="로그아웃">
@@ -51,27 +51,31 @@
             <div class="input-group-prepend">
                 <span class="input-group-text">이름</span>
             </div>
-            <input type="text" id="myname" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+            <input type="text" id="myname" class="form-control" aria-label="Default"
+                   aria-describedby="inputGroup-sizing-default">
         </div>
         <div class="input-group mb-3">
             <div class="input-group-prepend">
                 <span class="input-group-text">메일</span>
             </div>
-            <input type="text" id="email" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+            <input type="text" id="email" class="form-control" aria-label="Default"
+                   aria-describedby="inputGroup-sizing-default">
         </div>
         <div class="input-group mb-3">
             <div class="input-group-prepend">
                 <span class="input-group-text">비밀번호</span>
             </div>
-            <input type="text" id="password" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+            <input type="text" id="password" class="form-control" aria-label="Default"
+                   aria-describedby="inputGroup-sizing-default">
         </div>
         <div class="input-group mb-3">
             <div class="input-group-prepend">
                 <span class="input-group-text">비밀번호 확인</span>
             </div>
-            <input type="text" id="password_check" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+            <input type="text" id="password_check" class="form-control" aria-label="Default"
+                   aria-describedby="inputGroup-sizing-default">
         </div>
-        <button type="button" class="btn btn-info" onclick="onSignup()" >가입하기</button>
+        <button type="button" class="btn btn-info" onclick="onSignup()">가입하기</button>
     </section>
     <section class="login_section">
         로그인
@@ -79,13 +83,15 @@
             <div class="input-group-prepend">
                 <span class="input-group-text ">이메일</span>
             </div>
-            <input type="text" class="form-control login_email_input" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+            <input type="text" class="form-control login_email_input" aria-label="Default"
+                   aria-describedby="inputGroup-sizing-default">
         </div>
         <div class="input-group mb-3">
             <div class="input-group-prepend">
                 <span class="input-group-text ">비밀번호</span>
             </div>
-            <input type="text" class="form-control login_pw_input" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+            <input type="text" class="form-control login_pw_input" aria-label="Default"
+                   aria-describedby="inputGroup-sizing-default">
         </div>
         <button type="button" class="btn btn-info login_btn">로그인</button>
     </section>
@@ -98,7 +104,7 @@
         <div class="input-group">
             <input type="text" class="form-control" placeholder="검색어를 입력하세요">
             <span class="input-group-btn">
-                <button class="btn btn-default" type="button">검색</button>
+                <button class="btn btn-default" type="button" onclick="search_newsletter()">검색</button>
               </span>
             <button type="button" class="btn btn-default new_news" onclick="new_newsletter()" value="뉴스레터추가">새로운 뉴스레터
             </button>
@@ -143,13 +149,15 @@
 
 
 <div id="letter-box" class="letter-columns">
-    <div class="letter" style="size:300px">
+    {% for newsletter in newsletters %}
+    <div id="newsletters-{{ newsletter.title_news }}" class="letter" style="size:300px">
         <img class="letter-img-top"
              src="https://www.eurail.com/content/dam/images/eurail/Italy%20OCP%20Promo%20Block.adaptive.767.1535627244182.jpg"
              alt="letter image cap">
         <div class="letter-body">
-            <a target="_blank" href="#" class="letter-title">여기 기사 제목이 들어가죠</a>
-            <p class="letter-text">기사의 요약 내용이 들어갑니다</p>
+            <a target="_blank" href="#" class="letter-title">{{ newsletter.title }}</a>
+            <p class="letter-text">{{newsletter.category}}</p>
+            <p class="letter-desc">{{newsletter.desc}}</p>
             <p class="letter-text comment">여기에 코멘트가 들어갑니다.</p>
             <footer class="letter-footer">
                 <div class="startRadio">
@@ -188,370 +196,7 @@
             </footer>
         </div>
     </div>
-    <div class="letter">
-        <img class="letter-img-top"
-             src="https://www.eurail.com/content/dam/images/eurail/Italy%20OCP%20Promo%20Block.adaptive.767.1535627244182.jpg"
-             alt="letter image cap">
-        <div class="letter-body">
-            <a target="_blank" href="#" class="letter-title">여기 기사 제목이 들어가죠</a>
-            <p class="letter-text">기사의 요약 내용이 들어갑니다</p>
-            <p class="letter-text comment">여기에 코멘트가 들어갑니다.</p>
-            <div class="startRadio">
-                <label class="startRadio__box">
-                    <input type="radio" name="star">
-                    <span class="startRadio__img"><span class="blind">별 1개</span></span>
-                </label>
-                <label class="startRadio__box">
-                    <input type="radio" name="star">
-                    <span class="startRadio__img"><span class="blind">별 1.5개</span></span>
-                </label>
-                <label class="startRadio__box">
-                    <input type="radio" name="star">
-                    <span class="startRadio__img"><span class="blind">별 2개</span></span>
-                </label>
-                <label class="startRadio__box">
-                    <input type="radio" name="star">
-                    <span class="startRadio__img"><span class="blind">별 2.5개</span></span>
-                </label>
-                <label class="startRadio__box">
-                    <input type="radio" name="star">
-                    <span class="startRadio__img"><span class="blind">별 3개</span></span>
-                </label>
-                <label class="startRadio__box">
-                    <input type="radio" name="star">
-                    <span class="startRadio__img"><span class="blind">별 3.5개</span></span>
-                </label>
-                <label class="startRadio__box">
-                    <input type="radio" name="star">
-                    <span class="startRadio__img"><span class="blind">별 4개</span></span>
-                </label>
-                <label class="startRadio__box">
-                    <input type="radio" name="star">
-                    <span class="startRadio__img"><span class="blind">별 4.5개</span></span>
-                </label>
-                <label class="startRadio__box">
-                    <input type="radio" name="star">
-                    <span class="startRadio__img"><span class="blind">별 5개</span></span>
-                </label>
-                <label class="startRadio__box">
-                    <input type="radio" name="star">
-                    <span class="startRadio__img"><span class="blind">별 5.5개</span></span>
-                </label>
-            </div>
-        </div>
-    </div>
-    <div class="letter">
-        <img class="letter-img-top"
-             src="https://www.eurail.com/content/dam/images/eurail/Italy%20OCP%20Promo%20Block.adaptive.767.1535627244182.jpg"
-             alt="letter image cap">
-        <div class="letter-body">
-            <a target="_blank" href="#" class="letter-title">여기 기사 제목이 들어가죠</a>
-            <p class="letter-text">기사의 요약 내용이 들어갑니다</p>
-            <p class="letter-text comment">여기에 코멘트가 들어갑니다.</p>
-            <div class="startRadio">
-                <label class="startRadio__box">
-                    <input type="radio" name="star">
-                    <span class="startRadio__img"><span class="blind">별 1개</span></span>
-                </label>
-                <label class="startRadio__box">
-                    <input type="radio" name="star">
-                    <span class="startRadio__img"><span class="blind">별 1.5개</span></span>
-                </label>
-                <label class="startRadio__box">
-                    <input type="radio" name="star">
-                    <span class="startRadio__img"><span class="blind">별 2개</span></span>
-                </label>
-                <label class="startRadio__box">
-                    <input type="radio" name="star">
-                    <span class="startRadio__img"><span class="blind">별 2.5개</span></span>
-                </label>
-                <label class="startRadio__box">
-                    <input type="radio" name="star">
-                    <span class="startRadio__img"><span class="blind">별 3개</span></span>
-                </label>
-                <label class="startRadio__box">
-                    <input type="radio" name="star">
-                    <span class="startRadio__img"><span class="blind">별 3.5개</span></span>
-                </label>
-                <label class="startRadio__box">
-                    <input type="radio" name="star">
-                    <span class="startRadio__img"><span class="blind">별 4개</span></span>
-                </label>
-                <label class="startRadio__box">
-                    <input type="radio" name="star">
-                    <span class="startRadio__img"><span class="blind">별 4.5개</span></span>
-                </label>
-                <label class="startRadio__box">
-                    <input type="radio" name="star">
-                    <span class="startRadio__img"><span class="blind">별 5개</span></span>
-                </label>
-                <label class="startRadio__box">
-                    <input type="radio" name="star">
-                    <span class="startRadio__img"><span class="blind">별 5.5개</span></span>
-                </label>
-            </div>
-        </div>
-    </div>
-    <div class="letter">
-        <img class="letter-img-top"
-             src="https://www.eurail.com/content/dam/images/eurail/Italy%20OCP%20Promo%20Block.adaptive.767.1535627244182.jpg"
-             alt="letter image cap">
-        <div class="letter-body">
-            <a target="_blank" href="#" class="letter-title">여기 기사 제목이 들어가죠</a>
-            <p class="letter-text">기사의 요약 내용이 들어갑니다</p>
-            <p class="letter-text comment">여기에 코멘트가 들어갑니다.</p>
-            <div class="startRadio">
-                <label class="startRadio__box">
-                    <input type="radio" name="star">
-                    <span class="startRadio__img"><span class="blind">별 1개</span></span>
-                </label>
-                <label class="startRadio__box">
-                    <input type="radio" name="star">
-                    <span class="startRadio__img"><span class="blind">별 1.5개</span></span>
-                </label>
-                <label class="startRadio__box">
-                    <input type="radio" name="star">
-                    <span class="startRadio__img"><span class="blind">별 2개</span></span>
-                </label>
-                <label class="startRadio__box">
-                    <input type="radio" name="star">
-                    <span class="startRadio__img"><span class="blind">별 2.5개</span></span>
-                </label>
-                <label class="startRadio__box">
-                    <input type="radio" name="star">
-                    <span class="startRadio__img"><span class="blind">별 3개</span></span>
-                </label>
-                <label class="startRadio__box">
-                    <input type="radio" name="star">
-                    <span class="startRadio__img"><span class="blind">별 3.5개</span></span>
-                </label>
-                <label class="startRadio__box">
-                    <input type="radio" name="star">
-                    <span class="startRadio__img"><span class="blind">별 4개</span></span>
-                </label>
-                <label class="startRadio__box">
-                    <input type="radio" name="star">
-                    <span class="startRadio__img"><span class="blind">별 4.5개</span></span>
-                </label>
-                <label class="startRadio__box">
-                    <input type="radio" name="star">
-                    <span class="startRadio__img"><span class="blind">별 5개</span></span>
-                </label>
-                <label class="startRadio__box">
-                    <input type="radio" name="star">
-                    <span class="startRadio__img"><span class="blind">별 5.5개</span></span>
-                </label>
-            </div>
-        </div>
-    </div>
-    <div class="letter">
-        <img class="letter-img-top"
-             src="https://www.eurail.com/content/dam/images/eurail/Italy%20OCP%20Promo%20Block.adaptive.767.1535627244182.jpg"
-             alt="letter image cap">
-        <div class="letter-body">
-            <a target="_blank" href="#" class="letter-title">여기 기사 제목이 들어가죠</a>
-            <p class="letter-text">기사의 요약 내용이 들어갑니다</p>
-            <p class="letter-text comment">여기에 코멘트가 들어갑니다.</p>
-            <div class="startRadio">
-                <label class="startRadio__box">
-                    <input type="radio" name="star">
-                    <span class="startRadio__img"><span class="blind">별 1개</span></span>
-                </label>
-                <label class="startRadio__box">
-                    <input type="radio" name="star">
-                    <span class="startRadio__img"><span class="blind">별 1.5개</span></span>
-                </label>
-                <label class="startRadio__box">
-                    <input type="radio" name="star">
-                    <span class="startRadio__img"><span class="blind">별 2개</span></span>
-                </label>
-                <label class="startRadio__box">
-                    <input type="radio" name="star">
-                    <span class="startRadio__img"><span class="blind">별 2.5개</span></span>
-                </label>
-                <label class="startRadio__box">
-                    <input type="radio" name="star">
-                    <span class="startRadio__img"><span class="blind">별 3개</span></span>
-                </label>
-                <label class="startRadio__box">
-                    <input type="radio" name="star">
-                    <span class="startRadio__img"><span class="blind">별 3.5개</span></span>
-                </label>
-                <label class="startRadio__box">
-                    <input type="radio" name="star">
-                    <span class="startRadio__img"><span class="blind">별 4개</span></span>
-                </label>
-                <label class="startRadio__box">
-                    <input type="radio" name="star">
-                    <span class="startRadio__img"><span class="blind">별 4.5개</span></span>
-                </label>
-                <label class="startRadio__box">
-                    <input type="radio" name="star">
-                    <span class="startRadio__img"><span class="blind">별 5개</span></span>
-                </label>
-                <label class="startRadio__box">
-                    <input type="radio" name="star">
-                    <span class="startRadio__img"><span class="blind">별 5.5개</span></span>
-                </label>
-            </div>
-        </div>
-    </div>
-    <div class="letter">
-        <img class="letter-img-top"
-             src="https://www.eurail.com/content/dam/images/eurail/Italy%20OCP%20Promo%20Block.adaptive.767.1535627244182.jpg"
-             alt="letter image cap">
-        <div class="letter-body">
-            <a target="_blank" href="#" class="letter-title">여기 기사 제목이 들어가죠</a>
-            <p class="letter-text">기사의 요약 내용이 들어갑니다</p>
-            <p class="letter-text comment">여기에 코멘트가 들어갑니다.</p>
-            <div class="startRadio">
-                <label class="startRadio__box">
-                    <input type="radio" name="star">
-                    <span class="startRadio__img"><span class="blind">별 1개</span></span>
-                </label>
-                <label class="startRadio__box">
-                    <input type="radio" name="star">
-                    <span class="startRadio__img"><span class="blind">별 1.5개</span></span>
-                </label>
-                <label class="startRadio__box">
-                    <input type="radio" name="star">
-                    <span class="startRadio__img"><span class="blind">별 2개</span></span>
-                </label>
-                <label class="startRadio__box">
-                    <input type="radio" name="star">
-                    <span class="startRadio__img"><span class="blind">별 2.5개</span></span>
-                </label>
-                <label class="startRadio__box">
-                    <input type="radio" name="star">
-                    <span class="startRadio__img"><span class="blind">별 3개</span></span>
-                </label>
-                <label class="startRadio__box">
-                    <input type="radio" name="star">
-                    <span class="startRadio__img"><span class="blind">별 3.5개</span></span>
-                </label>
-                <label class="startRadio__box">
-                    <input type="radio" name="star">
-                    <span class="startRadio__img"><span class="blind">별 4개</span></span>
-                </label>
-                <label class="startRadio__box">
-                    <input type="radio" name="star">
-                    <span class="startRadio__img"><span class="blind">별 4.5개</span></span>
-                </label>
-                <label class="startRadio__box">
-                    <input type="radio" name="star">
-                    <span class="startRadio__img"><span class="blind">별 5개</span></span>
-                </label>
-                <label class="startRadio__box">
-                    <input type="radio" name="star">
-                    <span class="startRadio__img"><span class="blind">별 5.5개</span></span>
-                </label>
-            </div>
-        </div>
-    </div>
-    <div class="letter">
-        <img class="letter-img-top"
-             src="https://www.eurail.com/content/dam/images/eurail/Italy%20OCP%20Promo%20Block.adaptive.767.1535627244182.jpg"
-             alt="letter image cap">
-        <div class="letter-body">
-            <a target="_blank" href="#" class="letter-title">여기 기사 제목이 들어가죠</a>
-            <p class="letter-text">기사의 요약 내용이 들어갑니다</p>
-            <p class="letter-text comment">여기에 코멘트가 들어갑니다.</p>
-            <div class="startRadio">
-                <label class="startRadio__box">
-                    <input type="radio" name="star">
-                    <span class="startRadio__img"><span class="blind">별 1개</span></span>
-                </label>
-                <label class="startRadio__box">
-                    <input type="radio" name="star">
-                    <span class="startRadio__img"><span class="blind">별 1.5개</span></span>
-                </label>
-                <label class="startRadio__box">
-                    <input type="radio" name="star">
-                    <span class="startRadio__img"><span class="blind">별 2개</span></span>
-                </label>
-                <label class="startRadio__box">
-                    <input type="radio" name="star">
-                    <span class="startRadio__img"><span class="blind">별 2.5개</span></span>
-                </label>
-                <label class="startRadio__box">
-                    <input type="radio" name="star">
-                    <span class="startRadio__img"><span class="blind">별 3개</span></span>
-                </label>
-                <label class="startRadio__box">
-                    <input type="radio" name="star">
-                    <span class="startRadio__img"><span class="blind">별 3.5개</span></span>
-                </label>
-                <label class="startRadio__box">
-                    <input type="radio" name="star">
-                    <span class="startRadio__img"><span class="blind">별 4개</span></span>
-                </label>
-                <label class="startRadio__box">
-                    <input type="radio" name="star">
-                    <span class="startRadio__img"><span class="blind">별 4.5개</span></span>
-                </label>
-                <label class="startRadio__box">
-                    <input type="radio" name="star">
-                    <span class="startRadio__img"><span class="blind">별 5개</span></span>
-                </label>
-                <label class="startRadio__box">
-                    <input type="radio" name="star">
-                    <span class="startRadio__img"><span class="blind">별 5.5개</span></span>
-                </label>
-            </div>
-        </div>
-    </div>
-    <div class="letter">
-        <img class="letter-img-top"
-             src="https://www.eurail.com/content/dam/images/eurail/Italy%20OCP%20Promo%20Block.adaptive.767.1535627244182.jpg"
-             alt="letter image cap">
-        <div class="letter-body">
-            <a target="_blank" href="#" class="letter-title">여기 기사 제목이 들어가죠</a>
-            <p class="letter-text">기사의 요약 내용이 들어갑니다</p>
-            <p class="letter-text comment">여기에 코멘트가 들어갑니다.</p>
-            <div class="startRadio">
-                <label class="startRadio__box">
-                    <input type="radio" name="star">
-                    <span class="startRadio__img"><span class="blind">별 1개</span></span>
-                </label>
-                <label class="startRadio__box">
-                    <input type="radio" name="star">
-                    <span class="startRadio__img"><span class="blind">별 1.5개</span></span>
-                </label>
-                <label class="startRadio__box">
-                    <input type="radio" name="star">
-                    <span class="startRadio__img"><span class="blind">별 2개</span></span>
-                </label>
-                <label class="startRadio__box">
-                    <input type="radio" name="star">
-                    <span class="startRadio__img"><span class="blind">별 2.5개</span></span>
-                </label>
-                <label class="startRadio__box">
-                    <input type="radio" name="star">
-                    <span class="startRadio__img"><span class="blind">별 3개</span></span>
-                </label>
-                <label class="startRadio__box">
-                    <input type="radio" name="star">
-                    <span class="startRadio__img"><span class="blind">별 3.5개</span></span>
-                </label>
-                <label class="startRadio__box">
-                    <input type="radio" name="star">
-                    <span class="startRadio__img"><span class="blind">별 4개</span></span>
-                </label>
-                <label class="startRadio__box">
-                    <input type="radio" name="star">
-                    <span class="startRadio__img"><span class="blind">별 4.5개</span></span>
-                </label>
-                <label class="startRadio__box">
-                    <input type="radio" name="star">
-                    <span class="startRadio__img"><span class="blind">별 5개</span></span>
-                </label>
-                <label class="startRadio__box">
-                    <input type="radio" name="star">
-                    <span class="startRadio__img"><span class="blind">별 5.5개</span></span>
-                </label>
-            </div>
-        </div>
-    </div>
+    {% endfor %}
 </div>
 
 </div>

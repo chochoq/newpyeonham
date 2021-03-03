@@ -9,25 +9,21 @@ function new_newsletter() {
 }
 
 
-//뉴스레터 추가 insert
+
 function insert_newsletter() {
     let url = $('#letter-url').val()
     let title = $('#letter-title').val()
     let desc = $('#letter-desc').val()
     let category = $('#letter-category').val()
+    console.log(url)
 
     $.ajax({
         type: "POST",
         url: "/index/insert",
-        data: {
-            title_give: title,
-            category_give: category,
-            url_give: url,
-            desc_give: desc
-        },
+        data: {url_give: url, title_give: title, desc_give: desc, category_give: category},
         success: function (response) { // 성공하면
             alert(response['msg']);
-            window.location.reload()
+            window.location.reload();
         }
     })
 }
@@ -35,12 +31,12 @@ function insert_newsletter() {
 
 //검색
 function search_newsletter() {
-      $.ajax({
-          type: 'GET',
-          url: '/index/search',
-          data: {},
-          success: function (response) {
-              alert(response['msg']);
-          }
-      });
-  }
+    $.ajax({
+        type: 'GET',
+        url: '/index/search',
+        data: {},
+        success: function (response) {
+            alert(response['msg']);
+        }
+    });
+}
