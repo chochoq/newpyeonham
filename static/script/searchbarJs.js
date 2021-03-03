@@ -27,3 +27,25 @@ function insert_newsletter() {
         }
     })
 }
+
+
+/* function search_newsletter(){
+    const keyword = $('#input-newsletter').val();
+    
+
+    const result = newslettersjson.filter(news=>
+        news.title.includes(keyword))
+
+    console.log('result',result)
+} */
+
+for (let i = 0; i < newsletter_list.length; i++) {                
+    let letter = newsletter_list[i];
+    
+    if (letter.includes(newsletterVal)) {
+        console.log('맞음',newsletter_list[i])
+    } else {
+        console.log(letter, newsletterVal)
+        //console.log("없는 뉴스레터입니다 추가해주세요")
+    }
+}

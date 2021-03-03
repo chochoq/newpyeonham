@@ -148,7 +148,7 @@ def show_stars():
 
     search_newsletter = list(db.newsletters.find({'title': title_receive}, {'_id': False}))
 
-    print(search_newsletter)
+    print('검색결과',search_newsletter)
     return jsonify({'msg': 'list 연결되었습니다!'}, search_newsletter=search_newsletter)
 
 
