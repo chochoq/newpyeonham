@@ -37,13 +37,23 @@
         }
         console.log(newsletter_list)
 
-
+        //검색
         function search_newsletter() {
             let newsletterVal = $('#input-newsletter').val()
 
-            for (let i = 0; i < newsletter_list.length; i++) {
+            //아무것도 입력하지 않았을때
+            if (newsletterVal == "") {
+                console.log("값입력 ㄲㄱ")
+                return
+            }
 
-                if (newsletter_list[i]['title'] === newsletterVal) {
+            {#돌려돌려 검색판 #}
+            for (let i = 0; i < newsletter_list.length; i++) {
+                console.log(newsletter_list[i] +' 배열안에 있는 애들 ')
+                console.log(newsletterVal+' 검색 값 ')
+
+                let letter = newsletter_list[i];
+                if (letter['title'] == newsletterVal) {
                     console.log(newsletter_list)
                 } else {
                     console.log("없는 뉴스레터입니다 추가해주세요")
