@@ -45,7 +45,7 @@
             let newsletterVal = $('#input-newsletter').val()
             let count=0;
 
-            $('#letter-box').empty()
+            $('#letter-box').empty();            
 
 
             //아무것도 입력하지 않았을때
@@ -62,26 +62,24 @@
                     count = count + 1
                     console.log(count)
                     console.log('맞음',newsletter_list[i])
-                    let temp = `{% for newsletter in newsletters %}
-                                    <div id="newsletters-{{ newsletter.title_news }}" class="letter" style="size:300px">
-                                        <img class="card-img-top" src="{{ newsletter.image }}" alt="Card image cap">
+                    let temp = `<div id="newsletters-${ newslettersjson[i].title_news }" class="letter" style="size:300px">
+                                        <img class="card-img-top" src="${ newslettersjson[i].image }" alt="Card image cap">
                                         <div class="card-body">
-                                            <a target="_blank" href="{{ newsletter.url }}" class="card-title">{{ newsletter.title }}</a>
-                                            <p class="category">{{ newsletter.category }}</p>
-                                            <p class="card-text">{{ newsletter.desc }}</p>
+                                            <a target="_blank" href="${ newslettersjson[i].url }" class="card-title">${ newslettersjson[i].title }</a>
+                                            <p class="category">${ newslettersjson[i].category }</p>
+                                            <p class="card-text">${ newslettersjson[i].desc }</p>
                                             <p class="card-text comment"></p>
                                         </div>
                                         <footer class="card-footer">
-                                            <a href="#" onclick="deleteLetters('{{ newsletter.title }}')" class="card-footer-item has-text-danger">삭제<span
+                                            <a href="#" onclick="deleteLetters('${ newslettersjson[i].title }')" class="card-footer-item has-text-danger">삭제<span
                                                     class="icon">
                                                                           <i class="fas fa-ban"></i>
                                                                         </span>
                                             </a>
                                         </footer>
                                     </div>
-
-                                    </div>
-                                {% endfor %}`
+                                </div>
+                                `
 
                     $('#letter-box').append(temp)
 
@@ -229,9 +227,7 @@
                                             </span>
                 </a>
             </footer>
-        </div>
-
-        </div>
+        </div>        
     {% endfor %}
 </div>
 
