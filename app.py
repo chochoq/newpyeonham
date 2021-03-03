@@ -140,18 +140,6 @@ def post_articles():
     return jsonify({'msg': '저장완료'})
 
 
-# 검색
-@app.route('/index/search', methods=['GET'])
-def show_stars():
-    title_receive = request.args.get('title_give')
-    category_receive = request.args.get('category_give')
-
-    search_newsletter = list(db.newsletters.find({'title': title_receive}, {'_id': False}))
-
-    print(search_newsletter)
-    return jsonify({'msg': 'list 연결되었습니다!'}, search_newsletter=search_newsletter)
-
-
 
 # 코멘트
 @app.route('/index/comment', methods=['POST'])
