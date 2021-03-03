@@ -28,8 +28,42 @@
     <link rel="stylesheet" type="text/css" href="/static/css/searchbarStyle.css">
 
     <script>
-        let newsletters = '{{ newsletters }}'
+        {#let newsletters = '{{ newsletters }}'#}
         let status = '{{ status }}'
+
+
+        {#        검색을 위한 배열#}
+        let newslettersjson = {{ newsletters|safe }};
+        let newsletter_list = [];
+
+        for (let i = 0; i < newslettersjson.length; i++) {
+            newsletter_list.push(newslettersjson[i]["title"])
+        }
+        console.log(newsletter_list)
+
+        //검색
+        function search_newsletter() {
+            let newsletterVal = $('#input-newsletter').val()
+
+            //아무것도 입력하지 않았을때
+            if (newsletterVal == "") {
+                console.log("값입력 ㄲㄱ")
+                return
+            }
+
+            {#돌려돌려 검색판 #}
+            for (let i = 0; i < newsletter_list.length; i++) {
+                console.log(newsletter_list[i] + ' 배열안에 있는 애들 ')
+                console.log(newsletterVal + ' 검색 값 ')
+
+                let letter = newsletter_list[i];
+                if (letter[i] == newsletterVal) {
+                    console.log(newsletter_list)
+                } else {
+                    console.log("없는 뉴스레터입니다 추가해주세요")
+                }
+            }
+        }
 
     </script>
 </head>
@@ -39,10 +73,10 @@
     <i></i>
     <span class="title">뉴편함</span>
     <div class="button_box">
-       <input class="btn btn-primary " type="button" onclick="insertData()" value="데이터넣기">
+        <input class="btn btn-primary " type="button" onclick="insertData()" value="데이터넣기">
         <input class="btn btn-primary open_signup_btn open_btn" type="button" value="회원가입">
         <input class="btn btn-primary open_login_btn open_btn" type="button" value="로그인">
-        <span class="user_component">{{status}}님 환영합니다!</span>
+        <span class="user_component">{{ status }}님 환영합니다!</span>
         <input class="btn btn-primary logout_btn user_component" type="button" value="로그아웃">
     </div>
 </nav>
@@ -104,7 +138,7 @@
     <!--    검색 -->
     <div class="col-lg-6">
         <div class="input-group">
-            <input type="text" class="form-control" placeholder="검색어를 입력하세요">
+            <input id="input-newsletter" type="text" class="form-control" placeholder="검색어를 입력하세요">
             <span class="input-group-btn">
                 <button class="btn btn-default" type="button" onclick="search_newsletter()">검색</button>
               </span>
@@ -112,7 +146,6 @@
             </button>
         </div><!-- /input-group -->
     </div><!-- /.col-lg-6 -->
-
     <!--    뉴스레터 등록 div-->
     <div class="search_insert" id="search_insert" style="display: none">
         <div class="input_box">
@@ -152,24 +185,25 @@
 <!--뉴스레터 리스트-->
 <div id="letter-box" class="letter-columns">
     {% for newsletter in newsletters %}
-    <div id="newsletters-{{ newsletter.title_news }}" class="letter" style="size:300px">
-        <img class="card-img-top" src="{{newsletter.image}}" alt="Card image cap">
-        <div class="card-body">
-            <a target="_blank" href="{{newsletter.url}}" class="card-title">{{newsletter.title}}</a>
-            <p class="category">{{newsletter.category}}</p>
-            <p class="card-text">{{newsletter.desc}}</p>
-            <p class="card-text comment"></p>
-        </div>
-        <footer class="card-footer">
-        <a href="#" onclick="deleteLetters('{{newsletter.title}}')" class="card-footer-item has-text-danger">삭제<span class="icon">
+        <div id="newsletters-{{ newsletter.title_news }}" class="letter" style="size:300px">
+            <img class="card-img-top" src="{{ newsletter.image }}" alt="Card image cap">
+            <div class="card-body">
+                <a target="_blank" href="{{ newsletter.url }}" class="card-title">{{ newsletter.title }}</a>
+                <p class="category">{{ newsletter.category }}</p>
+                <p class="card-text">{{ newsletter.desc }}</p>
+                <p class="card-text comment"></p>
+            </div>
+            <footer class="card-footer">
+                <a href="#" onclick="deleteLetters('{{ newsletter.title }}')" class="card-footer-item has-text-danger">삭제<span
+                        class="icon">
                                               <i class="fas fa-ban"></i>
                                             </span>
-        </a>
-    </footer>
-    </div>
+                </a>
+            </footer>
+        </div>
 
-</div>
-{% endfor %}
+        </div>
+    {% endfor %}
 </div>
 
 </div>

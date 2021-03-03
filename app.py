@@ -143,9 +143,14 @@ def post_articles():
 # 검색
 @app.route('/index/search', methods=['GET'])
 def show_stars():
-    sample_receive = request.args.get('sample_give')
-    print(sample_receive)
-    return jsonify({'msg': 'list 연결되었습니다!'})
+    title_receive = request.args.get('title_give')
+    category_receive = request.args.get('category_give')
+
+    search_newsletter = list(db.newsletters.find({'title': title_receive}, {'_id': False}))
+
+    print(search_newsletter)
+    return jsonify({'msg': 'list 연결되었습니다!'}, search_newsletter=search_newsletter)
+
 
 
 # 코멘트
