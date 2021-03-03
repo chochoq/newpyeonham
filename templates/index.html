@@ -39,11 +39,11 @@
         for (let i = 0; i < newslettersjson.length; i++) {
             newsletter_list.push(newslettersjson[i]["title"])
         }
-        console.log(newsletter_list)
 
         //검색
         function search_newsletter() {
             let newsletterVal = $('#input-newsletter').val()
+            let count=0;
 
             //아무것도 입력하지 않았을때
             if (newsletterVal == "") {
@@ -53,15 +53,43 @@
 
             {#돌려돌려 검색판 #}
             for (let i = 0; i < newsletter_list.length; i++) {
-                console.log(newsletter_list[i] + ' 배열안에 있는 애들 ')
-                console.log(newsletterVal + ' 검색 값 ')
-
                 let letter = newsletter_list[i];
-                if (letter[i] == newsletterVal) {
-                    console.log(newsletter_list)
-                } else {
-                    console.log("없는 뉴스레터입니다 추가해주세요")
+
+                if (letter.includes(newsletterVal)) {
+                    count = count + 1
+                    console.log(count)
+                    console.log('맞음',newsletter_list[i])
+                    let temp = `{% for newsletter in newsletters %}
+                                    <div id="newsletters-{{ newsletter.title_news }}" class="letter" style="size:300px">
+                                        <img class="card-img-top" src="{{ newsletter.image }}" alt="Card image cap">
+                                        <div class="card-body">
+                                            <a target="_blank" href="{{ newsletter.url }}" class="card-title">{{ newsletter.title }}</a>
+                                            <p class="category">{{ newsletter.category }}</p>
+                                            <p class="card-text">{{ newsletter.desc }}</p>
+                                            <p class="card-text comment"></p>
+                                        </div>
+                                        <footer class="card-footer">
+                                            <a href="#" onclick="deleteLetters('{{ newsletter.title }}')" class="card-footer-item has-text-danger">삭제<span
+                                                    class="icon">
+                                                                          <i class="fas fa-ban"></i>
+                                                                        </span>
+                                            </a>
+                                        </footer>
+                                    </div>
+
+                                    </div>
+                                {% endfor %}`
+
+                    $('#letter-box').append(temp)
+
+
                 }
+            }
+
+            if(count==0){
+                console.log("없어요");
+            }else {
+
             }
         }
 
