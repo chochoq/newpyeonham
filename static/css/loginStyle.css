@@ -25,6 +25,13 @@ section.show{
     width: 120px;
 }
 
-/* .signup_section.show{
-    display: block;
-} */
+.login.open_btn{
+    display: none;
+}
+
+.user_component{
+    display: none;
+}
+.login.user_component{
+    display: inline-block;
+}

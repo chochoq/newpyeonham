@@ -21,17 +21,19 @@ db = client.dbsparta
 @app.route('/')
 def home():
     token_receive = request.cookies.get('mytoken')
+    print(token_receive)
+    newsletters = list(db.newsletters.find({}, {"_id": False}))
     try:
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
         user_info = db.user.find_one({"email": payload['email']})
-        return render_template('index.html', msg=user_info["name"])
+        return render_template('index.html', status=user_info["name"],newsletters=newsletters)
     except jwt.ExpiredSignatureError:
-        return render_template('index.html', msg="로그인 시간이 만료되었습니다.")
+        return render_template('index.html', status="expire",newsletters=newsletters)
     except jwt.exceptions.DecodeError:
-        return render_template('index.html')
+        return render_template('index.html', newsletters=newsletters)
     # DB에서 저장된 단어 찾아서 HTML에 나타내기
-    newsletters = list(db.newsletters.find({}, {"_id": False}))
-    return render_template('index.html',newsletters=newsletters)
+    
+    
 
 
 ## API 역할을 하는 부분

@@ -29,6 +29,7 @@
 
     <script>
         {# let newsletters = {{ newsletters }}; #}
+        let status = '{{ status }}'
         
     </script>
 </head>
@@ -38,10 +39,11 @@
     <i></i>
     <span class="title">뉴편함</span>
     <div class="button_box">
-        <input class="btn btn-primary " type="button" onclick="insertData()" value="데이터넣기">
-        <input class="btn btn-primary open_signup_btn" type="button" value="회원가입">
-        <input class="btn btn-primary open_login_btn" type="button" value="로그인">
-        <input class="btn btn-primary logout_btn" type="button" value="로그아웃">
+            {# <input class="btn btn-primary " type="button" onclick="insertData()" value="데이터넣기">         #}
+            <input class="btn btn-primary open_signup_btn open_btn" type="button" value="회원가입">
+            <input class="btn btn-primary open_login_btn open_btn" type="button" value="로그인">        
+            <span class="user_component">{{status}}님 환영합니다!</span>
+            <input class="btn btn-primary logout_btn user_component" type="button" value="로그아웃">
     </div>
 </nav>
 <div class="login">
@@ -65,14 +67,14 @@
             <div class="input-group-prepend">
                 <span class="input-group-text">비밀번호</span>
             </div>
-            <input type="text" id="password" class="form-control" aria-label="Default"
+            <input type="password" id="password" class="form-control" aria-label="Default"
                    aria-describedby="inputGroup-sizing-default">
         </div>
         <div class="input-group mb-3">
             <div class="input-group-prepend">
                 <span class="input-group-text">비밀번호 확인</span>
             </div>
-            <input type="text" id="password_check" class="form-control" aria-label="Default"
+            <input type="password" id="password_check" class="form-control" aria-label="Default"
                    aria-describedby="inputGroup-sizing-default">
         </div>
         <button type="button" class="btn btn-info" onclick="onSignup()">가입하기</button>
@@ -90,7 +92,7 @@
             <div class="input-group-prepend">
                 <span class="input-group-text ">비밀번호</span>
             </div>
-            <input type="text" class="form-control login_pw_input" aria-label="Default"
+            <input type="password" class="form-control login_pw_input" aria-label="Default"
                    aria-describedby="inputGroup-sizing-default">
         </div>
         <button type="button" class="btn btn-info login_btn">로그인</button>
