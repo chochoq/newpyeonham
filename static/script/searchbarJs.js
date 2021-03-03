@@ -1,3 +1,4 @@
+//뉴스레터 추가버튼 클릭시
 function new_newsletter() {
     let search_box = $('#search_insert')
     if (search_box.css("display") === "block") {
@@ -7,6 +8,8 @@ function new_newsletter() {
     }
 }
 
+
+//뉴스레터 추가 insert
 function insert_newsletter() {
     let url = $('#letter-url').val()
     let title = $('#letter-title').val()
@@ -30,3 +33,14 @@ function insert_newsletter() {
 }
 
 
+//검색
+function search_newsletter() {
+      $.ajax({
+          type: 'GET',
+          url: '/index/search',
+          data: {},
+          success: function (response) {
+              alert(response['msg']);
+          }
+      });
+  }

@@ -1,4 +1,7 @@
 from flask import Flask, render_template, jsonify, request
+import jwt
+import datetime
+import hashlib
 
 app = Flask(__name__)
 
@@ -21,13 +24,20 @@ def home():
 ## API 역할을 하는 부분
 # 회원가입
 @app.route('/index/signup', methods=['POST'])
-def write_review():
-    sample_receive = request.form['sample_give']
-    print(sample_receive)
-    return jsonify({'msg': '이 요청은 POST!'})
+def signup():
+    email = request.form['email']
+    name = request.form['name']
+    password = request.form['password']
+    
+    pw_hash = hashlib.sha256(password.encode('utf-8')).hexdigest()
+
+    db.user.insert_one({'name': name, 'email': email, 'password': pw_hash})
+
+    return jsonify({'result': 'success'})
 
 
 # 로그인
+SECRET_KEY = 'WECANDOANYTHING'
 @app.route('/index/login', methods=['POST'])
 def login():
     sample_receive = request.form['sample_give']
@@ -66,6 +76,12 @@ def insert_newsletter():
 
     return jsonify({'msg': '뉴스레터 완료되었습니다'})
 
+# 검색
+@app.route('/index/search', methods=['GET'])
+def show_stars():
+    sample_receive = request.args.get('sample_give')
+    print(sample_receive)
+    return jsonify({'msg': 'list 연결되었습니다!'})
 
 # 좋아요 관심
 @app.route('/index/like', methods=['POST'])
@@ -89,14 +105,6 @@ def comment():
     sample_receive = request.form['sample_give']
     print(sample_receive)
     return jsonify({'msg': '이 요청은 POST!'})
-
-
-# 검색
-@app.route('/index/search', methods=['GET'])
-def search():
-    sample_receive = request.args.get('sample_give')
-    print(sample_receive)
-    return jsonify({'msg': '이 요청은 GET!'})
 
 
 # 카테고리분류
