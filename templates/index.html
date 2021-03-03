@@ -43,7 +43,10 @@
         //검색
         function search_newsletter() {
             let newsletterVal = $('#input-newsletter').val()
-            let count = 0;
+            let count=0;
+
+            $('#letter-box').empty()
+
 
             //아무것도 입력하지 않았을때
             if (newsletterVal == "") {
@@ -54,29 +57,22 @@
             {#돌려돌려 검색판 #}
             for (let i = 0; i < newsletter_list.length; i++) {
                 let letter = newsletter_list[i];
-                $('#letter-box').empty()
+
                 if (letter.includes(newsletterVal)) {
                     count = count + 1
                     console.log(count)
-                    console.log('맞음', newsletter_list[i])
-
-                    let title = newsletter_list[i]['title']
-                    let image = newsletter_list[i]['image']
-                    let url = newsletter_list[i]['url']
-                    let category = newsletter_list[i]['category']
-                    let desc = newsletter_list[i]['desc']
-
-                    let temp = `<div id="newsletters-${title}" class="letter" style="size:300px">
-                                        <img class="card-img-top" src="${image}" alt="Card image cap">
+                    console.log('맞음',newsletter_list[i])
+                    let temp = `{% for newsletter in newsletters %}
+                                    <div id="newsletters-{{ newsletter.title_news }}" class="letter" style="size:300px">
+                                        <img class="card-img-top" src="{{ newsletter.image }}" alt="Card image cap">
                                         <div class="card-body">
-                                            <a target="_blank" href="${url}" class="card-title">
-                        ${title}</a>
-                                            <p class="category">${category}</p>
-                                            <p class="card-text">${desc}</p>
+                                            <a target="_blank" href="{{ newsletter.url }}" class="card-title">{{ newsletter.title }}</a>
+                                            <p class="category">{{ newsletter.category }}</p>
+                                            <p class="card-text">{{ newsletter.desc }}</p>
                                             <p class="card-text comment"></p>
                                         </div>
                                         <footer class="card-footer">
-                                            <a href="#" onclick="deleteLetters('${title}')" class="card-footer-item has-text-danger">삭제<span
+                                            <a href="#" onclick="deleteLetters('{{ newsletter.title }}')" class="card-footer-item has-text-danger">삭제<span
                                                     class="icon">
                                                                           <i class="fas fa-ban"></i>
                                                                         </span>
@@ -85,14 +81,16 @@
                                     </div>
 
                                     </div>
-                               `
+                                {% endfor %}`
+
                     $('#letter-box').append(temp)
+
+
                 }
             }
-            if (count == 0) {
-                console.log("없어요");
-            } else {
 
+            if(count==0){
+                console.log("없어요");
             }
         }
 
@@ -215,29 +213,29 @@
 
 <!--뉴스레터 리스트-->
 <div id="letter-box" class="letter-columns">
-        {% for newsletter in newsletters %}
-            <div id="newsletters-{{ newsletter.title_news }}" class="letter" style="size:300px">
-                <img class="card-img-top" src="{{ newsletter.image }}" alt="Card image cap">
-                <div class="card-body">
-                    <a target="_blank" href="{{ newsletter.url }}" class="card-title">{{ newsletter.title }}</a>
-                    <p class="category">{{ newsletter.category }}</p>
-                    <p class="card-text">{{ newsletter.desc }}</p>
-                    <p class="card-text comment"></p>
-                </div>
-                <footer class="card-footer">
-                    <a href="#" onclick="deleteLetters('{{ newsletter.title }}')" class="card-footer-item has-text-danger">삭제<span
-                            class="icon">
-                                                  <i class="fas fa-ban"></i>
-                                                </span>
-                    </a>
-                </footer>
+    {% for newsletter in newsletters %}
+        <div id="newsletters-{{ newsletter.title_news }}" class="letter" style="size:300px">
+            <img class="card-img-top" src="{{ newsletter.image }}" alt="Card image cap">
+            <div class="card-body">
+                <a target="_blank" href="{{ newsletter.url }}" class="card-title">{{ newsletter.title }}</a>
+                <p class="category">{{ newsletter.category }}</p>
+                <p class="card-text">{{ newsletter.desc }}</p>
+                <p class="card-text comment"></p>
             </div>
+            <footer class="card-footer">
+                <a href="#" onclick="deleteLetters('{{ newsletter.title }}')" class="card-footer-item has-text-danger">삭제<span
+                        class="icon">
+                                              <i class="fas fa-ban"></i>
+                                            </span>
+                </a>
+            </footer>
+        </div>
 
-            </div>
-        {% endfor %}
+        </div>
+    {% endfor %}
 </div>
 
-
+</div>
 </body>
 <script src="/static/script/loginJs.js"></script>
 <script src="/static/script/letterJs.js"></script>

@@ -9,7 +9,6 @@ function new_newsletter() {
 }
 
 
-
 function insert_newsletter() {
     let url = $('#letter-url').val()
     let title = $('#letter-title').val()
