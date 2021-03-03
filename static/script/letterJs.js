@@ -1,5 +1,4 @@
 
-
 function deleteLetters(title) {
     if(document.cookie.split('=')[1]){
         $.ajax({
@@ -18,14 +17,15 @@ function deleteLetters(title) {
 }
 
 
-function comment_insert(comment) {
-    //뉴스레터제목을 가져오고있음
-    console.log(comment)
-    if(document.cookie.split('=')[1]){
+function comment_insert(title,e) {
+    
+    const comment = e.previousElementSibling.value;
+    
+     if(document.cookie.split('=')[1]){
         $.ajax({
             type: 'POST',
-            url: '/api/comment',
-            data: {comment_give: comment},
+            url: '/index/comment',
+            data: {title, comment},
             success: function (response) {
                 alert(response['msg']);
                 window.location.reload()
@@ -33,6 +33,6 @@ function comment_insert(comment) {
         });
     }else{
         alert('로그인을 해주세요')
-    }
+    } 
 
 }

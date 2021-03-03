@@ -30,7 +30,7 @@ def home():
                                                      {'$sample': {'size': 8}}
                                                      ]))
 
-        return render_template('index.html', status=user_info["name"], newsletters=newsletters)
+        return render_template('index.html', status=user_info, newsletters=newsletters)
     except jwt.ExpiredSignatureError:
         newsletters = list(db.newsletters.aggregate([{'$sample': {'size': 8}}]))
         return render_template('index.html', status="expire", newsletters=newsletters)
@@ -150,14 +150,15 @@ def post_articles():
 # 코멘트
 @app.route('/index/comment', methods=['POST'])
 def comment():
-    token_receive = request.cookies.get('mytoken')
-    print('토오오큰', token_receive)
+    token_receive = request.cookies.get('mytoken')    
     payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
 
-    comment_receive = request.form['comment_give']
-    db.user.insert_one({"email": payload['email']}, {"$push": {"comment": comment_receive}})
+    comment_receive = request.form['comment']
+    title_receive = request.form['title']
 
-    return jsonify({'msg': '이제 [' + comment_receive + '] 에 작성되었습니다.'})
+    db.user.update_one({"email": payload['email']}, {"$push": {"comment":{"title":title_receive, "comment":comment_receive}}})
+    
+    return jsonify({'msg': title_receive + '에 코멘트를 작성했습니다.'})
 
 
 # 카테고리분류

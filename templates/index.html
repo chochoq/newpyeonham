@@ -101,7 +101,7 @@
         <input class="btn btn-primary " type="button" onclick="insertData()" value="데이터넣기">
         <input class="btn btn-primary open_signup_btn open_btn" type="button" value="회원가입">
         <input class="btn btn-primary open_login_btn open_btn" type="button" value="로그인">
-        <span class="user_component">{{ status }}님 환영합니다!</span>
+        <span class="user_component">{{ status['name'] }}님 환영합니다!</span>
         <input class="btn btn-primary logout_btn user_component" type="button" value="로그아웃">
     </div>
 </nav>
@@ -225,7 +225,7 @@
                     <div class="md-form">
                         <textarea class="md-textarea form-control" rows="3"
                                   placeholder="코멘트를 입력해주세요"></textarea>
-                        <button onclick="comment_insert('{{ newsletter.title }}')" type="button"
+                        <button onclick="comment_insert('{{ newsletter.title }}',this)" type="button"
                                 class="btn btn-default">save
                         </button>
                     </div>
