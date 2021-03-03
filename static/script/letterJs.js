@@ -1,13 +1,18 @@
 function deleteLetters(title) {
-    $.ajax({
-        type: 'POST',
-        url: '/api/delete',
-        data: {title_give: title},
-        success: function (response) {
-            alert(response['msg']);
-            window.location.reload()
-        }
-    });
+    if(document.cookie.split('=')[1]){
+        $.ajax({
+            type: 'POST',
+            url: '/api/delete',
+            data: {title_give: title},
+            success: function (response) {
+                alert(response['msg']);
+                window.location.reload()
+            }
+        });
+    }else{
+        alert('로그인을 해주세요')
+    }
+    
 }
 
 

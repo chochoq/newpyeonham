@@ -22,16 +22,16 @@ def home():
     token_receive = request.cookies.get('mytoken')
     print(token_receive)    
     
-    try:        
-        
+    try:                
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
         user_info = db.user.find_one({"email": payload['email']})
-        print(user_info['hide'])
-        #newsletters = list(db.newsletters.find( {'title':{'$nin':user_info['hide']}}))
-
-        newsletters = list(db.newsletters.aggregate([  {'$match': { 'title': {'$nin': user_info['hide']}}},
+        
+        if (user_info['hide']):
+            newsletters = list(db.newsletters.aggregate([  {'$match': { 'title': {'$nin': user_info['hide']}}},
                                                         { '$sample': { 'size': 8 }}
                                                     ]))
+        else :  
+            newsletters = list(db.newsletters.aggregate([{'$sample': { 'size': 8 }}]))                                          
                                                 
         return render_template('index.html', status=user_info["name"], newsletters=newsletters)
     except jwt.ExpiredSignatureError:
