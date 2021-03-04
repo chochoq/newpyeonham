@@ -30,21 +30,11 @@
     <script>
         {#let newsletters = '{{ newsletters }}'#}
         let status = '{{ status }}'
-<<<<<<< HEAD
 
         {#        검색을 위한 배열#}
        
         let newslettersjson = {{ newsletters|safe }};
         
-=======
-
-
-
-        {#        검색을 위한 배열#}
-
-  let newslettersjson = {{ newsletters|safe }};
-
->>>>>>> 2fa60b842acf0fcc2a64ccc30d650fa97a7d0480
         let newsletter_list = [];
 
         for (let i = 0; i < newslettersjson.length; i++) {
