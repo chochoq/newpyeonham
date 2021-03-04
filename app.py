@@ -3,13 +3,16 @@ from flask.helpers import url_for
 import jwt
 import datetime
 import hashlib
-
+from dotenv import load_dotenv
+import os
 import requests
 from bs4 import BeautifulSoup
 
 app = Flask(__name__)
 
 from pymongo import MongoClient
+
+load_dotenv(verbose=True)
 
 client = MongoClient('localhost', 27017)
 db = client.dbsparta
@@ -237,7 +240,7 @@ def insertSample():
     return jsonify({'result': 'success'})
 
 # 로그인
-SECRET_KEY = 'WECANDOANYTHING'
+SECRET_KEY = os.getenv('SECRET')
 
 
 @app.route('/index/login', methods=['POST'])
