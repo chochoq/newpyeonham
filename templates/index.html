@@ -103,10 +103,16 @@
     <span class="title">뉴편함</span>
     <div class="button_box">
         <input class="btn btn-primary " type="button" onclick="insertData()" value="데이터넣기">
+        
         <input class="btn btn-primary open_signup_btn open_btn" type="button" value="회원가입">
         <input class="btn btn-primary open_login_btn open_btn" type="button" value="로그인">
-        <span class="user_component">{{ status['name'] }}님 환영합니다!</span>
+        {% if status %}
+            <span class="user_component">{{ status['name'] }}님 환영합니다!</span>            
+        {% endif %}            
         <input class="btn btn-primary logout_btn user_component" type="button" value="로그아웃">
+        
+        
+        
     </div>
 </nav>
 <div class="login">

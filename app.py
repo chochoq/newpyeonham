@@ -49,10 +49,10 @@ def home():
         
         return render_template('index.html', status=user_info, newsletters=newsletters)
     except jwt.ExpiredSignatureError:
-        newsletters = list(db.newsletters.aggregate([{'$sample': {'size': 8}}]))
+        newsletters = list(db.newsletters.aggregate([{'$sample': {'size': 8}},{ '$project': { '_id':False }}]))
         return render_template('index.html', status="expire", newsletters=newsletters)
     except jwt.exceptions.DecodeError:
-        newsletters = list(db.newsletters.aggregate([{'$sample': {'size': 8}}]))
+        newsletters = list(db.newsletters.aggregate([{'$sample': {'size': 8}},{ '$project': { '_id':False }}]))
         return render_template('index.html', newsletters=newsletters)
     # DB에서 저장된 단어 찾아서 HTML에 나타내기
 
