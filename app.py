@@ -28,12 +28,25 @@ def home():
 
         newsletters = list(db.newsletters.aggregate([{'$match': {'title': {'$nin': user_info['hide']}}},
                                                      {'$sample': {'size': 8}},
-                                                     { '$project': { '_id':False } }
+                                                     { '$project': { '_id':False }}                                                     
                                                      ]))
-        print(newsletters)
-        print(user_info['hide'])
-        print(user_info['like'])
-        print(user_info['comment'])
+
+        like = user_info['like']                                                     
+
+        if len(like)>0 :
+            for letter in newsletters :
+                if(letter['title'] in like) :
+                    letter['like'] = True
+
+        commentList = user_info['comment'];
+        if len(commentList)>0 :
+            for letter in newsletters:                
+                for comment in commentList:
+                    if(letter['title'] == comment['title']) :
+                        letter['comment'] = comment['comment']
+                    
+        
+        
         return render_template('index.html', status=user_info, newsletters=newsletters)
     except jwt.ExpiredSignatureError:
         newsletters = list(db.newsletters.aggregate([{'$sample': {'size': 8}}]))
