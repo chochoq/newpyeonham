@@ -5,6 +5,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <meta property="og:title" content="뉴편함" />
+    <meta property="og:description" content="뉴스레터를 모아서 보고, 관리하자" />
+    <meta property="og:image" content="{{ url_for('static', filename='og.png') }}" />
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
@@ -110,7 +114,7 @@
     
     <span class="title">  뉴편함 <img src="../static/favicon.ico"></img></span>
     <div class="button_box">      
-        
+        <input class="btn btn-primary open_signup_btn open_btn" type="button" value="데이터넣기" onclick="insertData()" >
         <input class="btn btn-primary open_signup_btn open_btn" type="button" value="회원가입">
         <input class="btn btn-primary open_login_btn open_btn" type="button" value="로그인">
         {% if status %}
