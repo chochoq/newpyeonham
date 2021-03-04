@@ -225,18 +225,20 @@
                        id="comment">{{ newsletter.title }}</a>
                     <p class="category">{{ newsletter.category }}</p>
                     <p class="card-text">{{ newsletter.desc }}</p>
-                    <p class="card-text comment"></p>
-                    <!--Material textarea-->
-                    <!-- 텍스트에어리어에 작성한글 그냥 바로 띄워줄까하는데 어떻게 생각하는지-->
-                    <div class="md-form">
+
+                    {% if comment == '' %}
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Cras justo odio</li>
+                        </ul>
+                    {% else %}
+                        <div class="md-form">
                         <textarea class="md-textarea form-control" rows="3"
                                   placeholder="코멘트를 입력해주세요"></textarea>
                         <button onclick="comment_insert('{{ newsletter.title }}',this)" type="button"
                                 class="btn btn-default">save
                         </button>
-                    </div>
-
-
+                        </div>
+                    {% endif %}
                 </div>
                 <footer class="card-footer">
                     <a href="#" onclick="deleteLetters('{{ newsletter.title }}')"
