@@ -93,6 +93,11 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    width: 80%;
-    
+    width: 80%;    
+}
+
+.button_box input{
+    background-color: #efefef;
+    color:black;
+    border: none;
 }

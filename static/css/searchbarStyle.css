@@ -1,6 +1,7 @@
 .searchbar{
-    width: 1500px;
-    margin: auto;
+    width: 100%;
+    margin: 20px 0;
+    
 }
 
 .col-lg-6{
