@@ -105,7 +105,7 @@ def insertSample():
         "title": "위클리 호박너구리",
         "url": "https://pumpkin-raccoon.com/newsletter",
         "category": "종합",
-        "image": "https://pumpkin-raccoon.com/images/projects/newsletter-mockup.png",
+        "image": "https://img1.daumcdn.net/thumb/C500x500.fjpg/?fname=http://t1.daumcdn.net/brunch/service/user/aPMD/image/RRpZhjd3sL7Rh9u8ZB9TLRDHQt8.jpg",
         "desc": "취준생, 직장인을 위한 종합 경제 뉴스레터! IT, 경영, 산업, 스타트업 등 호박너구리의 관심이 듬뿍 담긴 지식을  매주 수요일, 5분만에 배워보세요!"
     }
 
@@ -199,14 +199,7 @@ def insertSample():
         "desc": "아이보스의 마케팅 내공 업그레이드 프로젝트! 마케터를 위한 아이디어 조각을 큐레이션 해 보내 드려요. 마케팅 뉴스, 트렌드, 책 등을 보면서 우리는 한 뼘씩 더 성장해갑니다. 구독, Q!"
     }
 
-    letter15 = {
 
-        "title": "Ogle",
-        "url": "https://mailchi.mp/4dc5e88c3112/subscribe_ogle",
-        "category": "문화예술",
-        "image": "https://mcusercontent.com/9fd764107d75bd33827481d56/images/fed91c20-c7f9-4b73-ae7b-08963a4b7510.png",
-        "desc": "뮤지컬, 연극, 오페라 등 공연과 관련된 다양한 소식과 이야기를 전해주는 뉴스레터입니다. 공연 러버가 들려주는 이야기를 매주 금요일에 만나보세요!"
-    }
 
     letter16 = {
 
@@ -231,7 +224,7 @@ def insertSample():
     db.newsletters.insert_one(letter12)
     db.newsletters.insert_one(letter13)
     db.newsletters.insert_one(letter14)
-    db.newsletters.insert_one(letter15)
+
     db.newsletters.insert_one(letter16)
 
     return jsonify({'result': 'success'})
