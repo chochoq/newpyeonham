@@ -23,6 +23,10 @@
     border-radius: 5px;
 }
 
+.letter img{
+    height: 200px;
+}
+
 .letter .md-form{    
     display: flex;
     flex-direction: column;
