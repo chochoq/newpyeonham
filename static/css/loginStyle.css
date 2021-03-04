@@ -1,8 +1,10 @@
 nav{
     background-color: antiquewhite;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
+    height: 270px;
+    justify-content: center;    
+    align-items: center;    
 }
 
 .login section{
@@ -41,8 +43,29 @@ section.show{
     padding-left: 500px;
 }
 
+.button_box{
+    display: flex;
+    justify-content: flex-end;    
+    align-items: center;
+    width: 100%;
+}
+
+.button_box .btn{
+    margin: 10px;
+}
+
 .button_box input{
     background-color: #efefef;
     color:black;
     border: none;
+}
+
+
+
+
+nav span.title{
+    margin-top: 50px;
+    font-size: 7rem;
+    font-family: 'Do Hyeon', sans-serif;
+    /* font-family: 'Black Han Sans', sans-serif; */
 }

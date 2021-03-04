@@ -1,15 +1,19 @@
 .searchbar{
     width: 100%;
-    margin: 20px 0;
+    margin: 20px 0;    
+    display: flex;
+    justify-content: center;
+    align-items: center;
     
 }
 
-.col-lg-6{
-    margin: auto;
-}
+
 
 .search_insert{
     text-align: center;
+}
 
+.input-group .new_news{
+    margin: 0 10px;
 }
 
