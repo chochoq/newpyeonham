@@ -27,7 +27,7 @@ def home():
         user_info = db.user.find_one({"email": payload['email']})
 
         newsletters = list(db.newsletters.aggregate([{'$match': {'title': {'$nin': user_info['hide']}}},
-                                                     {'$sample': {'size': 12}},
+                                                     {'$sample': {'size': 8}},
                                                      { '$project': { '_id':False }}                                                     
                                                      ]))
 
