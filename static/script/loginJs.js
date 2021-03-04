@@ -8,8 +8,9 @@ const login_btn = document.querySelector('.login_btn');
 const logout_btn = document.querySelector('.logout_btn');
 const user_component = document.querySelectorAll('.user_component');
 const open_btn = document.querySelectorAll('.open_btn');
-// 로그인 확인
 
+
+// 로그인 확인
 const paintButton = (isLogin)=>{
     if(isLogin){
         open_btn.forEach(b=>{
@@ -64,6 +65,12 @@ open_signup_btn.addEventListener('click',()=>{
     toggle_signup_show();    
 })
 
+s_password_check.addEventListener('keyup',(e)=>{
+    if(e.keyCode === 13){
+        onSignup();
+    }
+})
+
 open_login_btn.addEventListener('click',()=>{    
     if(signup_section.classList.contains('show')){
         toggle_signup_show();
@@ -75,10 +82,10 @@ open_login_btn.addEventListener('click',()=>{
 
 // 회원가입 기능
 const onSignup = ()=>{
-    const name = $('#myname').val();
-    const email = $('#email').val();
-    const password = $('#password').val();
-    const password_check = $('#password_check').val();
+    const name = $('#s_myname').val();
+    const email = $('#s_email').val();
+    const password = $('#s_password').val();
+    const password_check = $('#s_password_check').val();
     
     const user = {
         name, email, password
@@ -145,9 +152,18 @@ login_btn.addEventListener('click',()=>{
     onLogin()
 })
 
+login_pw_input.addEventListener('keyup',e=>{
+    if(e.keyCode === 13){
+        onLogin();
+    }
+})
+
 const onLogin = ()=>{
-    const email = login_email_input.value;
+    
+    const email = login_email_input.value;        
     const password = login_pw_input.value;
+
+    console.log(email,password)
     
     const user = {
         email, password
