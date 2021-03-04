@@ -42,7 +42,7 @@
         }
         //검색
         function search_newsletter() {
-           
+
 
             let newsletterVal = $('#input-newsletter').val()
             let count = 0;
@@ -57,7 +57,7 @@
             }
 
             {#돌려돌려 검색판 #}
-            
+
             for (let i = 0; i < newsletter_list.length; i++) {
                 let letter = newsletter_list[i];
 
@@ -223,10 +223,9 @@
                        id="comment">{{ newsletter.title }}</a>
                     <p class="category">{{ newsletter.category }}</p>
                     <p class="card-text">{{ newsletter.desc }}</p>
-
-                    {% if comment == '' %}
+                     {% if newsletter.comment %}
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Cras justo odio</li>
+                            <li class="list-group-item">{{newsletter.comment}}</li>
                         </ul>
                     {% else %}
                         <div class="md-form">
