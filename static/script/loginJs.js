@@ -40,8 +40,7 @@ const checkLoginStatus = ()=>{
     }else if(status==="expire"){
         alert('로그인 토큰이 만료되었습니다')
         paintButton(false);
-    }else{
-        console.log('로그인됨', status)
+    }else{        
         paintButton(true);
     }    
 }
