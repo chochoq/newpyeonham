@@ -10,6 +10,7 @@ const user_component = document.querySelectorAll('.user_component');
 const open_btn = document.querySelectorAll('.open_btn');
 
 
+
 // 로그인 확인
 const paintButton = (isLogin)=>{
     if(isLogin){
@@ -65,11 +66,6 @@ open_signup_btn.addEventListener('click',()=>{
     toggle_signup_show();    
 })
 
-s_password_check.addEventListener('keyup',(e)=>{
-    if(e.keyCode === 13){
-        onSignup();
-    }
-})
 
 open_login_btn.addEventListener('click',()=>{    
     if(signup_section.classList.contains('show')){
@@ -78,7 +74,16 @@ open_login_btn.addEventListener('click',()=>{
     toggle_login_show();
 })
 
+s_password_check.addEventListener('keyup',(e)=>{
+    if(e.keyCode === 13){
+        onSignup();
+    }
+})
 
+
+signup_btn.addEventListener('click',()=>{
+    onSignup();
+}) 
 
 // 회원가입 기능
 const onSignup = ()=>{

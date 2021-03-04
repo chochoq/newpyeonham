@@ -114,7 +114,7 @@
     
     <span class="title">  뉴편함 <img src="../static/favicon.ico"></img></span>
     <div class="button_box">      
-        <input type="button" value="데이터넣기" onclick="insertData()" >
+        {# <input type="button" value="데이터넣기" onclick="insertData()" > #}
         <input class="btn btn-primary open_signup_btn open_btn" type="button" value="회원가입">
         <input class="btn btn-primary open_login_btn open_btn" type="button" value="로그인">
         {% if status %}
@@ -155,7 +155,7 @@
             <input type="password" id="s_password_check" class="form-control" aria-label="Default"
                    aria-describedby="inputGroup-sizing-default" >
         </div>
-        <button type="button" class="btn btn-info">가입하기</button>
+        <button type="button" id="signup_btn" class="btn btn-info">가입하기</button>
     </section>
     <section class="login_section">
         로그인
