@@ -1,9 +1,16 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+
+
+
 #letter-box {
     width: 95%;
     margin: auto;
     display: flex;
     flex-wrap: wrap;
     justify-content: start;
+    font-family: 'Jua', sans-serif;
+
 }
 
 .letter {
@@ -105,7 +112,8 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    width: 80%;    
+    width: 80%;
+
 }
 
 
@@ -130,3 +138,11 @@
 
 }
 
+.card-img-top{
+    object-fit: contain;
+}
+
+.card-body{
+
+    font-family: 'Jua', sans-serif;
+}
