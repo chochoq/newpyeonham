@@ -26,7 +26,10 @@
     <link rel="stylesheet" type="text/css" href="/static/css/loginStyle.css">
     <link rel="stylesheet" type="text/css" href="/static/css/letterStyle.css">
     <link rel="stylesheet" type="text/css" href="/static/css/searchbarStyle.css">
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet"> <!--CDN 링크 -->
+
+
     <script>
         {#let newsletters = '{{ newsletters }}'#}
         let status = '{{ status }}'
@@ -242,12 +245,12 @@
                     {% endif %}
                 </div>
                 <footer class="card-footer">
-                    <a href="#" onclick="deleteLetters('{{ newsletter.title }}')"
-                       class="card-footer-item has-text-danger">
-                        삭제
-                        <span class="icon"><i class="fas fa-ban"></i></span>
-                    </a>                    </span>
-                    </a>
+                    {% if newsletter.like %}
+                        <i class="fas fa-star like" onclick="likeLetter('{{ newsletter.title }}',false)"></i>
+                    {% else %}
+                        <i class="far fa-star dontlike" onclick="likeLetter('{{ newsletter.title }}',true)"></i>
+                    {% endif %}
+                        <i onclick="deleteLetters('{{ newsletter.title }}')" class="fas fa-ban"></i>
                 </footer>
             </div>
         {% endfor %}

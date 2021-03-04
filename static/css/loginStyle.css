@@ -35,3 +35,14 @@ section.show{
 .login.user_component{
     display: inline-block;
 }
+
+.input_box{
+    width: 1500px;
+    padding-left: 500px;
+}
+
+.button_box input{
+    background-color: #efefef;
+    color:black;
+    border: none;
+}

@@ -27,7 +27,7 @@ def home():
         user_info = db.user.find_one({"email": payload['email']})
 
         newsletters = list(db.newsletters.aggregate([{'$match': {'title': {'$nin': user_info['hide']}}},
-                                                     {'$sample': {'size': 8}},
+                                                     {'$sample': {'size': 12}},
                                                      { '$project': { '_id':False }}                                                     
                                                      ]))
 
@@ -36,7 +36,7 @@ def home():
         if len(like)>0 :
             for letter in newsletters :
                 if(letter['title'] in like) :
-                    letter['like'] = True
+                    letter['like'] = 1
 
         commentList = user_info['comment'];
         if len(commentList)>0 :
@@ -202,14 +202,33 @@ def show_letters():
 
 @app.route('/api/delete', methods=['POST'])
 def delete_letters():
-    token_receive = request.cookies.get('mytoken')
-    print('토오오큰', token_receive)
+    token_receive = request.cookies.get('mytoken')    
     payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
 
     title_receive = request.form['title_give']
     db.user.update_one({"email": payload['email']}, {"$push": {"hide": title_receive}})
 
     return jsonify({'msg': '이제 [' + title_receive + '] 뉴스레터는 보이지않아요!'})
+
+@app.route('/api/like', methods=['POST'])
+def like_letters():
+    token_receive = request.cookies.get('mytoken')    
+    payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+
+    title_receive = request.form['title']
+    is_like = request.form['isLike']
+    print(title_receive, is_like)
+    
+    if is_like == 'true':        
+        db.user.update_one({"email": payload['email']}, {"$push": {"like": title_receive}})
+        msg = title_receive+' 좋아요!'
+    else :        
+        db.user.update_one({"email": payload['email']}, {"$pull": {"like": title_receive}})        
+        msg = title_receive+'는 이제 안 좋아요..'
+    
+
+    return jsonify({'msg': msg})
+
 
 
 if __name__ == '__main__':

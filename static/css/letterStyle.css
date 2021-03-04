@@ -7,12 +7,24 @@
 }
 
 .letter {
-
+    display: flex;
+    flex-direction: column;
     width: 300px;
     margin: 10px;
     padding: 10px;
     border: black solid;
     border-radius: 5px;
+}
+
+.letter .md-form{    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.letter .md-form button{
+    margin-top: 10px;
 }
 
 .letter-img-top {
@@ -89,15 +101,32 @@
     cursor: pointer;
 }
 
-.card-wrapper{
+.card-wrapper{    
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
     width: 80%;    
 }
 
-.button_box input{
-    background-color: #efefef;
-    color:black;
-    border: none;
+
+.letter footer{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    
 }
+
+.letter footer i{  
+    display: inline-block;  
+    padding: 5px;
+    width: 50%;
+    height: 100%;
+    cursor: pointer;
+    text-align: center;
+}
+
+.like{
+    color: rgb(255, 162, 23);
+
+}
+
