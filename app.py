@@ -31,6 +31,9 @@ def home():
                                                      { '$project': { '_id':False } }
                                                      ]))
         print(newsletters)
+        print(user_info['hide'])
+        print(user_info['like'])
+        print(user_info['comment'])
         return render_template('index.html', status=user_info, newsletters=newsletters)
     except jwt.ExpiredSignatureError:
         newsletters = list(db.newsletters.aggregate([{'$sample': {'size': 8}}]))
